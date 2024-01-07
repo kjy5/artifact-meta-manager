@@ -1,18 +1,18 @@
 import {
-    Button,
-    ButtonGroup,
-    IconButton,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    TextField,
-    Typography,
+  Button,
+  ButtonGroup,
+  IconButton,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextField,
+  Typography,
 } from '@mui/material';
-import {Add, ArrowDropDown, ArrowDropUp, Delete} from '@mui/icons-material';
-import {ReactElement} from 'react';
+import { Add, ArrowDropDown, ArrowDropUp, Delete } from '@mui/icons-material';
+import { ReactElement } from 'react';
 
 /**
  * Header row for links table.

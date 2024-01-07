@@ -1,19 +1,19 @@
 import {
-    Button,
-    ButtonGroup,
-    IconButton,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    TextField,
-    Typography,
+  Button,
+  ButtonGroup,
+  IconButton,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextField,
+  Typography,
 } from '@mui/material';
-import {Add, AddPhotoAlternate, ArrowDropDown, ArrowDropUp, Delete} from '@mui/icons-material';
+import { Add, AddPhotoAlternate, ArrowDropDown, ArrowDropUp, Delete } from '@mui/icons-material';
 import VisuallyHiddenInput from './VisuallyHiddenInput.tsx';
-import {ReactElement} from 'react';
+import { ReactElement } from 'react';
 
 /**
  * Header row for images table.

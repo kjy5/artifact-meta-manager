@@ -1,18 +1,18 @@
 import {
-    Button,
-    ButtonGroup,
-    IconButton,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    TextField,
-    Typography,
+  Button,
+  ButtonGroup,
+  IconButton,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextField,
+  Typography,
 } from '@mui/material';
-import {Add, ArrowDropDown, ArrowDropUp} from '@mui/icons-material';
-import {ReactElement} from 'react';
+import { Add, ArrowDropDown, ArrowDropUp } from '@mui/icons-material';
+import { ReactElement } from 'react';
 
 /**
  * Header row for embeds table.
@@ -61,16 +61,16 @@ function EmbedRow(): ReactElement {
  * @constructor
  */
 function Embeds(): ReactElement {
-    return (
-        <>
-            <Typography variant={'h2'}>Embeds</Typography>
-            <TableContainer>
-                <Table>
-                    <TableHead>
-                        <HeaderRow/>
-                    </TableHead>
-                    <TableBody>
-                        <EmbedRow/>
+  return (
+    <>
+      <Typography variant={'h2'}>Embeds</Typography>
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <HeaderRow />
+          </TableHead>
+          <TableBody>
+            <EmbedRow />
           </TableBody>
         </Table>
       </TableContainer>
