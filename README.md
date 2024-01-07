@@ -1,30 +1,20 @@
-# React + TypeScript + Vite
+# Artifact Meta Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![Build Website](https://github.com/kjy5/artifact-meta-manager/actions/workflows/build.yml/badge.svg)](https://github.com/kjy5/artifact-meta-manager/actions/workflows/build.yml)
+[![Deploy to GitHub Pages](https://github.com/kjy5/artifact-meta-manager/actions/workflows/deploy.yml/badge.svg)](https://github.com/kjy5/artifact-meta-manager/actions/workflows/deploy.yml)
+[![Dependency Review](https://github.com/kjy5/artifact-meta-manager/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/kjy5/artifact-meta-manager/actions/workflows/dependency-review.yml)
+[![Reformat and Lint](https://github.com/kjy5/artifact-meta-manager/actions/workflows/reformat-and-lint.yml/badge.svg)](https://github.com/kjy5/artifact-meta-manager/actions/workflows/reformat-and-lint.yml)
+[![CodeQL](https://github.com/kjy5/artifact-meta-manager/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/kjy5/artifact-meta-manager/actions/workflows/github-code-scanning/codeql)
 
-Currently, two official plugins are available:
+Tool to manage the metadata of artifacts for
+my [Honors Portfolio](https://kjy5.github.io/honors-portfolio/).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Launch the tool [here](https://kjy5.github.io/artifact-meta-manager/).
 
-## Expanding the ESLint configuration
+## Development
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-};
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. Get the latest version of [Node.js](https://nodejs.org/en/) (LTS or Current).
+2. Clone the repository.
+3. `cd artifact-meta-manager`
+4. `npm install`
+5. `npm run dev`
