@@ -26,7 +26,7 @@ jobs:
 
       # Configure NPM to cache dependencies
       - name: 🟩 Setup Node.js and caching
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: latest
           cache: 'npm'
@@ -42,6 +42,6 @@ jobs:
       # Upload artifact if requested
       - name: ⬆️ Upload artifact
         if: ${{ inputs.upload-artifact }}
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: 'dist'
