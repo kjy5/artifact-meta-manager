@@ -1,24 +1,28 @@
-import { MenuItem, Stack, TextField } from '@mui/material';
+import { MenuItem, Stack, TextField, Typography } from '@mui/material';
 
 function BasicInfo() {
   return (
-    <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1}>
-      <Stack spacing={1}>
-        <TextField label={'Title'} multiline />
+    <>
+      <Typography variant={'h2'}>Basic Info</Typography>
 
-        <TextField label={'Subtitle'} multiline />
+      <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1}>
+        <Stack spacing={1}>
+          <TextField label={'Title'} multiline />
 
-        <TextField select label={'Year'}>
-          <MenuItem value={0}>Freshman</MenuItem>
-        </TextField>
+          <TextField label={'Subtitle'} multiline />
 
-        <TextField select label={'Quarter'}>
-          <MenuItem value={0}>Fall</MenuItem>
-        </TextField>
+          <TextField select label={'Year'}>
+            <MenuItem value={0}>Freshman</MenuItem>
+          </TextField>
+
+          <TextField select label={'Quarter'}>
+            <MenuItem value={0}>Fall</MenuItem>
+          </TextField>
+        </Stack>
+
+        <TextField label={'Text'} multiline fullWidth />
       </Stack>
-
-      <TextField label={'Text'} multiline fullWidth />
-    </Stack>
+    </>
   );
 }
 
