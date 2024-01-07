@@ -1,19 +1,89 @@
 import {
-  Button,
-  ButtonGroup,
-  IconButton,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  TextField,
-  Typography,
+    Button,
+    ButtonGroup,
+    IconButton,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    TextField,
+    Typography,
 } from '@mui/material';
-import { Add, AddPhotoAlternate, ArrowDropDown, ArrowDropUp, Delete } from '@mui/icons-material';
+import {Add, AddPhotoAlternate, ArrowDropDown, ArrowDropUp, Delete} from '@mui/icons-material';
 import VisuallyHiddenInput from './VisuallyHiddenInput.tsx';
-import { ReactElement } from 'react';
+import {ReactElement} from 'react';
+
+/**
+ * Header row for images table.
+ * @constructor
+ */
+function HeaderRow(): ReactElement {
+  return (
+    <TableRow>
+      {/* Placement buttons */}
+      <TableCell />
+
+      <TableCell>Image</TableCell>
+      <TableCell>Title</TableCell>
+      <TableCell>Description</TableCell>
+      <TableCell>Width</TableCell>
+      <TableCell>Height</TableCell>
+      <TableCell>Remove</TableCell>
+    </TableRow>
+  );
+}
+
+/**
+ * Row for a single image.
+ * @constructor
+ */
+function ImageRow(): ReactElement {
+  return (
+    <TableRow>
+      <TableCell>
+        <ButtonGroup orientation={'vertical'}>
+          <IconButton aria-label={'move up'}>
+            <ArrowDropUp />
+          </IconButton>
+          <IconButton aria-label={'move down'}>
+            <ArrowDropDown />
+          </IconButton>
+        </ButtonGroup>
+      </TableCell>
+
+      <TableCell>
+        <Button aria-label={'upload image'} component={'label'} startIcon={<AddPhotoAlternate />}>
+          Upload
+          <VisuallyHiddenInput type={'file'} accept={'image/*'} />
+        </Button>
+      </TableCell>
+
+      <TableCell>
+        <TextField placeholder={'Title'} multiline />
+      </TableCell>
+
+      <TableCell>
+        <TextField placeholder={'Description'} multiline />
+      </TableCell>
+
+      <TableCell>
+        <TextField placeholder={'Width'} />
+      </TableCell>
+
+      <TableCell>
+        <TextField placeholder={'Height'} />
+      </TableCell>
+
+      <TableCell>
+        <IconButton aria-label={'remove'}>
+          <Delete />
+        </IconButton>
+      </TableCell>
+    </TableRow>
+  );
+}
 
 /**
  * View for editing images.
@@ -26,60 +96,10 @@ function Images(): ReactElement {
       <TableContainer>
         <Table>
           <TableHead>
-            <TableRow>
-              {/* Placement buttons */}
-              <TableCell />
-
-              <TableCell>Image</TableCell>
-              <TableCell>Title</TableCell>
-              <TableCell>Description</TableCell>
-              <TableCell>Width</TableCell>
-              <TableCell>Height</TableCell>
-              <TableCell>Remove</TableCell>
-            </TableRow>
+            <HeaderRow />
           </TableHead>
           <TableBody>
-            <TableRow>
-              <TableCell>
-                <ButtonGroup orientation={'vertical'}>
-                  <IconButton aria-label={'move up'}>
-                    <ArrowDropUp />
-                  </IconButton>
-                  <IconButton aria-label={'move down'}>
-                    <ArrowDropDown />
-                  </IconButton>
-                </ButtonGroup>
-              </TableCell>
-
-              <TableCell>
-                <Button aria-label={'upload image'} component={'label'} startIcon={<AddPhotoAlternate />}>
-                  Upload
-                  <VisuallyHiddenInput type={'file'} accept={'image/*'} />
-                </Button>
-              </TableCell>
-
-              <TableCell>
-                <TextField placeholder={'Title'} multiline />
-              </TableCell>
-
-              <TableCell>
-                <TextField placeholder={'Description'} multiline />
-              </TableCell>
-
-              <TableCell>
-                <TextField placeholder={'Width'} />
-              </TableCell>
-
-              <TableCell>
-                <TextField placeholder={'Height'} />
-              </TableCell>
-
-              <TableCell>
-                <IconButton aria-label={'remove'}>
-                  <Delete />
-                </IconButton>
-              </TableCell>
-            </TableRow>
+            <ImageRow />
           </TableBody>
         </Table>
       </TableContainer>

@@ -1,39 +1,45 @@
 import {
-  Button,
-  ButtonGroup,
-  IconButton,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  TextField,
-  Typography,
+    Button,
+    ButtonGroup,
+    IconButton,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    TextField,
+    Typography,
 } from '@mui/material';
-import { Add, ArrowDropDown, ArrowDropUp, Delete } from '@mui/icons-material';
-import { ReactElement } from 'react';
+import {Add, ArrowDropDown, ArrowDropUp, Delete} from '@mui/icons-material';
+import {ReactElement} from 'react';
 
-function TableHeader() {
+/**
+ * Header row for links table.
+ * @constructor
+ */
+function HeaderRow(): ReactElement {
   return (
-    <TableHead>
-      <TableRow>
-        {/* Placement buttons */}
-        <TableCell />
+    <TableRow>
+      {/* Placement buttons */}
+      <TableCell />
 
-        <TableCell>URL</TableCell>
-        <TableCell>Title</TableCell>
-        <TableCell>Description</TableCell>
-        <TableCell>Image URL</TableCell>
-        <TableCell>Favicon URL</TableCell>
-        <TableCell>Domain</TableCell>
-        <TableCell>Remove</TableCell>
-      </TableRow>
-    </TableHead>
+      <TableCell>URL</TableCell>
+      <TableCell>Title</TableCell>
+      <TableCell>Description</TableCell>
+      <TableCell>Image URL</TableCell>
+      <TableCell>Favicon URL</TableCell>
+      <TableCell>Domain</TableCell>
+      <TableCell>Remove</TableCell>
+    </TableRow>
   );
 }
 
-function LinkRow() {
+/**
+ * Row for a single link.
+ * @constructor
+ */
+function LinkRow(): ReactElement {
   return (
     <TableRow>
       {/* Placement buttons */}
@@ -98,7 +104,9 @@ function Links(): ReactElement {
       <Typography variant={'h2'}>Links</Typography>
       <TableContainer>
         <Table>
-          <TableHeader />
+          <TableHead>
+            <HeaderRow />
+          </TableHead>
           <TableBody>
             <LinkRow />
           </TableBody>
