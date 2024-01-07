@@ -10,7 +10,7 @@ function App() {
     <Box sx={{ m: 2 }}>
       <Container>
         <Stack spacing={2}>
-          <Typography variant={'h1'}>Artifact Meta Generator</Typography>
+          <Typography variant={'h1'}>Artifact Meta Manager</Typography>
 
           <ArtifactPicker />
           <BasicInfo />
