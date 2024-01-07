@@ -1,36 +1,25 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
+import { Box, Container, Stack, Typography } from '@mui/material';
+import ArtifactPicker from './components/ArtifactPicker.tsx';
+import BasicInfo from './components/BasicInfo.tsx';
+import Images from './components/Images.tsx';
+import Links from './components/Links.tsx';
+import Embeds from './components/Embeds.tsx';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button
-          onClick={() => {
-            setCount((count) => count + 1);
-          }}
-        >
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </>
+    <Box sx={{ m: 2 }}>
+      <Container>
+        <Stack spacing={2}>
+          <Typography variant={'h1'}>Artifact Meta Generator</Typography>
+
+          <ArtifactPicker />
+          <BasicInfo />
+          <Images />
+          <Links />
+          <Embeds />
+        </Stack>
+      </Container>
+    </Box>
   );
 }
 
