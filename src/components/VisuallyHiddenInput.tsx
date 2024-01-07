@@ -1,6 +1,6 @@
 import { styled } from '@mui/material';
 
-const VisuallyHiddenInput = styled('input', { shouldForwardProp: (_) => true })({
+const VisuallyHiddenInput = styled('input', { shouldForwardProp: () => true })({
   clipPath: 'inset(50%)',
   height: 1,
   overflow: 'hidden',
