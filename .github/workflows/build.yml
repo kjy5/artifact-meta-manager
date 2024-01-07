@@ -11,7 +11,7 @@ on:
   workflow_call:
     inputs:
       upload-artifact:
-        description: "Upload artifact to be used by other workflows"
+        description: 'Upload artifact to be used by other workflows'
         required: true
         default: false
         type: boolean
@@ -29,12 +29,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: latest
-          cache: "npm"
+          cache: 'npm'
 
       # Install deps
       - name: 📦 Install dependencies
         run: npm i
-      
+
       # Build
       - name: 🔨 Build
         run: npm run build
@@ -44,4 +44,4 @@ jobs:
         if: ${{ inputs.upload-artifact }}
         uses: actions/upload-pages-artifact@v2
         with:
-          path: "dist"
+          path: 'dist'

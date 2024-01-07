@@ -1,7 +1,7 @@
 name: Bug Report
 description: Create a report to help us improve
-title: "[BUG]: "
-labels: [ "bug" ]
+title: '[BUG]: '
+labels: ['bug']
 body:
   - type: textarea
     id: what-happened
@@ -30,7 +30,7 @@ body:
     attributes:
       label: Expected behavior
       description: A clear and concise description of what you expected to happen.
-      placeholder: "It was supposed to do this..."
+      placeholder: 'It was supposed to do this...'
     validations:
       required: false
 
@@ -39,7 +39,7 @@ body:
     attributes:
       label: Desktop Information
       description: Explain what environment you encountered the problem in
-      placeholder: "OS: Windows 10, Browser: Chrome, Version: 90.0.4430.212"
+      placeholder: 'OS: Windows 10, Browser: Chrome, Version: 90.0.4430.212'
     validations:
       required: false
 
@@ -48,9 +48,9 @@ body:
     attributes:
       label: Do you plan to solve this issue yourself?
       options:
-        - "Yes"
-        - "No"
-        - "I need help"
+        - 'Yes'
+        - 'No'
+        - 'I need help'
     validations:
       required: true
 
