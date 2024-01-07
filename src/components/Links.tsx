@@ -49,32 +49,32 @@ function Links() {
 
               {/* URL */}
               <TableCell>
-                <TextField label={'URL'} />
+                <TextField placeholder={'URL'} />
               </TableCell>
 
               {/* Title */}
               <TableCell>
-                <TextField label={'Title'} multiline />
+                <TextField placeholder={'Title'} multiline />
               </TableCell>
 
               {/* Description */}
               <TableCell>
-                <TextField label={'Description'} multiline />
+                <TextField placeholder={'Description'} multiline />
               </TableCell>
 
               {/* Image URL */}
               <TableCell>
-                <TextField label={'Image URL'} />
+                <TextField placeholder={'Image URL'} />
               </TableCell>
 
               {/* Favicon URL */}
               <TableCell>
-                <TextField label={'Favicon URL'} />
+                <TextField placeholder={'Favicon URL'} />
               </TableCell>
 
               {/* Domain */}
               <TableCell>
-                <TextField label={'Domain'} />
+                <TextField placeholder={'Domain'} />
               </TableCell>
 
               {/* Remove */}

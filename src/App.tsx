@@ -3,6 +3,7 @@ import ArtifactPicker from './components/ArtifactPicker.tsx';
 import BasicInfo from './components/BasicInfo.tsx';
 import Images from './components/Images.tsx';
 import Links from './components/Links.tsx';
+import Embeds from './components/Embeds.tsx';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <BasicInfo />
           <Images />
           <Links />
+          <Embeds />
         </Stack>
       </Container>
     </Box>

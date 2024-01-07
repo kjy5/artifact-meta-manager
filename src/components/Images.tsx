@@ -54,19 +54,19 @@ function Images() {
               </TableCell>
 
               <TableCell>
-                <TextField label={'Title'} multiline />
+                <TextField placeholder={'Title'} multiline />
               </TableCell>
 
               <TableCell>
-                <TextField label={'Description'} multiline />
+                <TextField placeholder={'Description'} multiline />
               </TableCell>
 
               <TableCell>
-                <TextField label={'Width'} />
+                <TextField placeholder={'Width'} />
               </TableCell>
 
               <TableCell>
-                <TextField label={'Height'} />
+                <TextField placeholder={'Height'} />
               </TableCell>
 
               <TableCell>
