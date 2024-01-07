@@ -21,7 +21,7 @@ interface Image {
   thumbnailSrc: string;
 }
 
-interface ArtifactMeta {
+interface Artifact {
   title: string;
   subtitle: string;
   year: Year;
@@ -31,3 +31,8 @@ interface ArtifactMeta {
   Links: string[];
   Embeds: string[];
 }
+
+/**
+ * A map of artifact names to their metadata.
+ */
+type ArtifactMetas = Record<string, Artifact>;

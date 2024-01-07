@@ -1,36 +1,28 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
+import { Box, FormControl, IconButton, InputLabel, MenuItem, Select, Stack } from '@mui/material';
+import { Add, DeleteForever } from '@mui/icons-material';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button
-          onClick={() => {
-            setCount((count) => count + 1);
-          }}
-        >
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </>
+    <Box sx={{ m: 2 }}>
+      <Stack direction="row" spacing={2}>
+        <FormControl fullWidth>
+          <InputLabel id={'artifact-select-label'}>Artifact</InputLabel>
+          <Select labelId={'artifact-select-label'} label={'Artifact'}>
+            <MenuItem value="1">Artifact 1</MenuItem>
+            <MenuItem value="2">Artifact 2</MenuItem>
+            <MenuItem value="3">Artifact 387293487923879</MenuItem>
+          </Select>
+        </FormControl>
+
+        <IconButton aria-label={'add-artifact'} color={'primary'}>
+          <Add />
+        </IconButton>
+
+        <IconButton aria-label={'delete-artifact'} color={'error'}>
+          <DeleteForever />
+        </IconButton>
+      </Stack>
+    </Box>
   );
 }
 
