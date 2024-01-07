@@ -1,13 +1,26 @@
 import { Button, ButtonGroup, IconButton, MenuItem, Stack, TextField } from '@mui/material';
 import { Add, Delete, FileDownload, UploadFile } from '@mui/icons-material';
 import VisuallyHiddenInput from './VisuallyHiddenInput.tsx';
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
+
+interface ArtifactPickerProps {
+  currentArtifact: string;
+  onArtifactSelectionChanged: (artifactTitle: string) => void;
+  artifactNames: string[];
+
+  onArtifactCreated: () => void;
+}
 
 /**
  * View for picking artifacts and loading meta file.
  * @constructor
  */
-function ArtifactPicker(): ReactElement {
+function ArtifactPicker({
+                          currentArtifact,
+                          onArtifactSelectionChanged,
+                          artifactNames,
+                          onArtifactCreated,
+                        }: ArtifactPickerProps): ReactElement {
   return (
     <Stack spacing={1}>
       {/* Artifact meta file upload download */}
@@ -23,13 +36,21 @@ function ArtifactPicker(): ReactElement {
       </ButtonGroup>
 
       <Stack direction={'row'} spacing={2}>
-        <TextField select label={'Artifact'} fullWidth>
-          <MenuItem value="1">Artifact 1</MenuItem>
-          <MenuItem value="2">Artifact 2</MenuItem>
-          <MenuItem value="3">Artifact 387293487923879</MenuItem>
+        <TextField
+          select
+          label={'Artifact'}
+          fullWidth
+          value={currentArtifact}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => onArtifactSelectionChanged(event.target.value)}
+        >
+          {artifactNames.map((artifactName: string) => (
+            <MenuItem key={artifactName} value={artifactName}>
+              {artifactName}
+            </MenuItem>
+          ))}
         </TextField>
 
-        <IconButton aria-label={'add'} color={'primary'}>
+        <IconButton aria-label={'add'} color={'primary'} onClick={onArtifactCreated}>
           <Add />
         </IconButton>
 

@@ -37,8 +37,8 @@ interface Artifact {
   quarter: Quarter;
   text: string;
   images: Image[];
-  Links: Link[];
-  Embeds: string[];
+  links: Link[];
+  embeds: string[];
 }
 
 /**

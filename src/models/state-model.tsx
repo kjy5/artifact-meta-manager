@@ -1,7 +1,7 @@
 import { ArtifactMetas } from './artifact-meta-models.ts';
 
 interface StateModel {
-  currentArtifact: string;
+  currentArtifactTitle: string;
   artifactMetas: ArtifactMetas;
 }
 
