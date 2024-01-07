@@ -1,7 +1,7 @@
-import {Button, ButtonGroup, IconButton, MenuItem, Stack, TextField} from '@mui/material';
-import {Add, Delete, FileDownload, UploadFile} from '@mui/icons-material';
+import { Button, ButtonGroup, IconButton, MenuItem, Stack, TextField } from '@mui/material';
+import { Add, Delete, FileDownload, UploadFile } from '@mui/icons-material';
 import VisuallyHiddenInput from './VisuallyHiddenInput.tsx';
-import {ReactElement} from 'react';
+import { ReactElement } from 'react';
 
 /**
  * View for picking artifacts and loading meta file.

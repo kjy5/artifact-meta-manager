@@ -11,8 +11,8 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import {Add, ArrowDropDown, ArrowDropUp} from '@mui/icons-material';
-import {ReactElement} from 'react';
+import { Add, ArrowDropDown, ArrowDropUp } from '@mui/icons-material';
+import { ReactElement } from 'react';
 
 /**
  * View for editing embeds.
