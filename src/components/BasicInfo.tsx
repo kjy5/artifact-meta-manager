@@ -1,11 +1,12 @@
 import { MenuItem, Stack, TextField, Typography } from '@mui/material';
+import { Quarter, Year } from '../models/artifact-meta-models.ts';
 
 function BasicInfo() {
   return (
     <>
       <Typography variant={'h2'}>Basic Info</Typography>
 
-      <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1}>
+      <Stack direction={'row'} spacing={1}>
         <Stack spacing={1}>
           <TextField label={'Title'} multiline />
 

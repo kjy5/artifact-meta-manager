@@ -11,13 +11,12 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { Add, AddPhotoAlternate, ArrowDropDown, ArrowDropUp, Delete } from '@mui/icons-material';
-import VisuallyHiddenInput from './VisuallyHiddenInput.tsx';
+import { Add, ArrowDropDown, ArrowDropUp, Delete } from '@mui/icons-material';
 
-function Images() {
+function Links() {
   return (
     <>
-      <Typography variant={'h2'}>Images</Typography>
+      <Typography variant={'h2'}>Links</Typography>
       <TableContainer>
         <Table>
           <TableHead>
@@ -25,16 +24,18 @@ function Images() {
               {/* Placement buttons */}
               <TableCell />
 
-              <TableCell>Image</TableCell>
+              <TableCell>URL</TableCell>
               <TableCell>Title</TableCell>
               <TableCell>Description</TableCell>
-              <TableCell>Width</TableCell>
-              <TableCell>Height</TableCell>
+              <TableCell>Image URL</TableCell>
+              <TableCell>Favicon URL</TableCell>
+              <TableCell>Domain</TableCell>
               <TableCell>Remove</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             <TableRow>
+              {/* Placement buttons */}
               <TableCell>
                 <ButtonGroup orientation={'vertical'}>
                   <IconButton aria-label={'move up'}>
@@ -46,29 +47,37 @@ function Images() {
                 </ButtonGroup>
               </TableCell>
 
+              {/* URL */}
               <TableCell>
-                <Button aria-label={'upload image'} component={'label'} startIcon={<AddPhotoAlternate />}>
-                  Upload
-                  <VisuallyHiddenInput type={'file'} accept={'image/*'} />
-                </Button>
+                <TextField label={'URL'} />
               </TableCell>
 
+              {/* Title */}
               <TableCell>
                 <TextField label={'Title'} multiline />
               </TableCell>
 
+              {/* Description */}
               <TableCell>
                 <TextField label={'Description'} multiline />
               </TableCell>
 
+              {/* Image URL */}
               <TableCell>
-                <TextField label={'Width'} />
+                <TextField label={'Image URL'} />
               </TableCell>
 
+              {/* Favicon URL */}
               <TableCell>
-                <TextField label={'Height'} />
+                <TextField label={'Favicon URL'} />
               </TableCell>
 
+              {/* Domain */}
+              <TableCell>
+                <TextField label={'Domain'} />
+              </TableCell>
+
+              {/* Remove */}
               <TableCell>
                 <IconButton aria-label={'remove'}>
                   <Delete />
@@ -79,11 +88,11 @@ function Images() {
         </Table>
       </TableContainer>
 
-      <Button aria-label={'add image'} startIcon={<Add />}>
-        Add Image
+      <Button aria-label={'add link'} startIcon={<Add />}>
+        Add Link
       </Button>
     </>
   );
 }
 
-export default Images;
+export default Links;

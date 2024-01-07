@@ -2,6 +2,7 @@ import { Box, Container, Stack, Typography } from '@mui/material';
 import ArtifactPicker from './components/ArtifactPicker.tsx';
 import BasicInfo from './components/BasicInfo.tsx';
 import Images from './components/Images.tsx';
+import Links from './components/Links.tsx';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <ArtifactPicker />
           <BasicInfo />
           <Images />
+          <Links />
         </Stack>
       </Container>
     </Box>

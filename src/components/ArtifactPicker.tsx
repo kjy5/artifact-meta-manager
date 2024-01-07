@@ -5,19 +5,19 @@ import VisuallyHiddenInput from './VisuallyHiddenInput.tsx';
 function ArtifactPicker() {
   return (
     <Stack spacing={1}>
-      {/*Artifact meta file upload download*/}
+      {/* Artifact meta file upload download */}
       <ButtonGroup>
-        <Button component={'label'} startIcon={<UploadFile />}>
+        <Button aria-label={'upload meta file'} component={'label'} startIcon={<UploadFile />}>
           Upload Meta File
           <VisuallyHiddenInput type={'file'} accept={'image/*'} />
         </Button>
-        <Button component={'label'} startIcon={<FileDownload />}>
+        <Button aria-label={'download meta file'} component={'label'} startIcon={<FileDownload />}>
           Download Meta File
           <VisuallyHiddenInput type={'file'} accept={'image/*'} />
         </Button>
       </ButtonGroup>
 
-      <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
+      <Stack direction={'row'} spacing={2}>
         <TextField select label={'Artifact'} fullWidth>
           <MenuItem value="1">Artifact 1</MenuItem>
           <MenuItem value="2">Artifact 2</MenuItem>

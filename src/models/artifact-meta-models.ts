@@ -22,12 +22,12 @@ interface Image {
 }
 
 interface Link {
+  url: string;
   title: string;
   description: string;
   imageSrc: string;
   faviconSrc: string;
   domain: string;
-  url: string;
 }
 
 interface Artifact {
@@ -45,3 +45,6 @@ interface Artifact {
  * A map of artifact names to their metadata.
  */
 type ArtifactMetas = Record<string, Artifact>;
+
+export { Quarter, Year };
+export type { Artifact, ArtifactMetas, Image, Link };
