@@ -1,8 +1,13 @@
-import { Button, ButtonGroup, IconButton, MenuItem, Stack, TextField } from '@mui/material';
-import { Add, Delete, FileDownload, UploadFile } from '@mui/icons-material';
+import {Button, ButtonGroup, IconButton, MenuItem, Stack, TextField} from '@mui/material';
+import {Add, Delete, FileDownload, UploadFile} from '@mui/icons-material';
 import VisuallyHiddenInput from './VisuallyHiddenInput.tsx';
+import {ReactElement} from 'react';
 
-function ArtifactPicker() {
+/**
+ * View for picking artifacts and loading meta file.
+ * @constructor
+ */
+function ArtifactPicker(): ReactElement {
   return (
     <Stack spacing={1}>
       {/* Artifact meta file upload download */}

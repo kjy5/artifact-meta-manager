@@ -11,10 +11,15 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { Add, AddPhotoAlternate, ArrowDropDown, ArrowDropUp, Delete } from '@mui/icons-material';
+import {Add, AddPhotoAlternate, ArrowDropDown, ArrowDropUp, Delete} from '@mui/icons-material';
 import VisuallyHiddenInput from './VisuallyHiddenInput.tsx';
+import {ReactElement} from 'react';
 
-function Images() {
+/**
+ * View for editing images.
+ * @constructor
+ */
+function Images(): ReactElement {
   return (
     <>
       <Typography variant={'h2'}>Images</Typography>

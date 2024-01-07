@@ -1,7 +1,12 @@
-import { MenuItem, Stack, TextField, Typography } from '@mui/material';
-import { Quarter, Year } from '../models/artifact-meta-models.ts';
+import {MenuItem, Stack, TextField, Typography} from '@mui/material';
+import {Quarter, Year} from '../models/artifact-meta-models.ts';
+import {ReactElement} from 'react';
 
-function BasicInfo() {
+/**
+ * View for editing basic info.
+ * @constructor
+ */
+function BasicInfo(): ReactElement {
   return (
     <>
       <Typography variant={'h2'}>Basic Info</Typography>

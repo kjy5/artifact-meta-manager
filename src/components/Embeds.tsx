@@ -11,9 +11,14 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { Add, ArrowDropDown, ArrowDropUp } from '@mui/icons-material';
+import {Add, ArrowDropDown, ArrowDropUp} from '@mui/icons-material';
+import {ReactElement} from 'react';
 
-function Embeds() {
+/**
+ * View for editing embeds.
+ * @constructor
+ */
+function Embeds(): ReactElement {
   return (
     <>
       <Typography variant={'h2'}>Embeds</Typography>
