@@ -21,6 +21,15 @@ interface Image {
   thumbnailSrc: string;
 }
 
+interface Link {
+  title: string;
+  description: string;
+  imageSrc: string;
+  faviconSrc: string;
+  domain: string;
+  url: string;
+}
+
 interface Artifact {
   title: string;
   subtitle: string;
@@ -28,7 +37,7 @@ interface Artifact {
   quarter: Quarter;
   text: string;
   images: Image[];
-  Links: string[];
+  Links: Link[];
   Embeds: string[];
 }
 

@@ -12,11 +12,17 @@ function BasicInfo() {
           <TextField label={'Subtitle'} multiline />
 
           <TextField select label={'Year'}>
-            <MenuItem value={0}>Freshman</MenuItem>
+            <MenuItem value={Year.Freshman}>Freshman</MenuItem>
+            <MenuItem value={Year.Sophomore}>Sophomore</MenuItem>
+            <MenuItem value={Year.Junior}>Junior</MenuItem>
+            <MenuItem value={Year.Senior}>Senior</MenuItem>
           </TextField>
 
           <TextField select label={'Quarter'}>
-            <MenuItem value={0}>Fall</MenuItem>
+            <MenuItem value={Quarter.Fall}>Fall</MenuItem>
+            <MenuItem value={Quarter.Winter}>Winter</MenuItem>
+            <MenuItem value={Quarter.Spring}>Spring</MenuItem>
+            <MenuItem value={Quarter.Summer}>Summer</MenuItem>
           </TextField>
         </Stack>
 

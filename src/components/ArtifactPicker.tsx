@@ -1,22 +1,37 @@
-import { IconButton, MenuItem, Stack, TextField } from '@mui/material';
-import { Add, DeleteForever } from '@mui/icons-material';
+import { Button, ButtonGroup, IconButton, MenuItem, Stack, TextField } from '@mui/material';
+import { Add, Delete, FileDownload, UploadFile } from '@mui/icons-material';
+import VisuallyHiddenInput from './VisuallyHiddenInput.tsx';
 
 function ArtifactPicker() {
   return (
-    <Stack direction={'row'} spacing={2}>
-      <TextField select label={'Artifact'} fullWidth>
-        <MenuItem value="1">Artifact 1</MenuItem>
-        <MenuItem value="2">Artifact 2</MenuItem>
-        <MenuItem value="3">Artifact 387293487923879</MenuItem>
-      </TextField>
+    <Stack spacing={1}>
+      {/*Artifact meta file upload download*/}
+      <ButtonGroup>
+        <Button component={'label'} startIcon={<UploadFile />}>
+          Upload Meta File
+          <VisuallyHiddenInput type={'file'} accept={'image/*'} />
+        </Button>
+        <Button component={'label'} startIcon={<FileDownload />}>
+          Download Meta File
+          <VisuallyHiddenInput type={'file'} accept={'image/*'} />
+        </Button>
+      </ButtonGroup>
 
-      <IconButton aria-label={'add-artifact'} color={'primary'}>
-        <Add />
-      </IconButton>
+      <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
+        <TextField select label={'Artifact'} fullWidth>
+          <MenuItem value="1">Artifact 1</MenuItem>
+          <MenuItem value="2">Artifact 2</MenuItem>
+          <MenuItem value="3">Artifact 387293487923879</MenuItem>
+        </TextField>
 
-      <IconButton aria-label={'delete-artifact'} color={'error'}>
-        <DeleteForever />
-      </IconButton>
+        <IconButton aria-label={'add'} color={'primary'}>
+          <Add />
+        </IconButton>
+
+        <IconButton aria-label={'delete'} color={'error'}>
+          <Delete />
+        </IconButton>
+      </Stack>
     </Stack>
   );
 }
