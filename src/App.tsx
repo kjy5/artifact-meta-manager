@@ -1,21 +1,21 @@
 import {Box, Container, Stack, Typography} from '@mui/material';
 import ArtifactPicker from './components/ArtifactPicker.tsx';
-import {ReactElement, useState} from 'react';
-import StateModel from './models/state-model.tsx';
+import {ReactElement} from 'react';
 import BasicInfo from './components/BasicInfo.tsx';
 import Images from './components/Images.tsx';
 import Links from './components/Links.tsx';
 import Embeds from './components/Embeds.tsx';
-import AppVm from './app-vm.ts';
+import useStateStore from './utils/store-manager.tsx';
+import FileLoader from './components/FileLoader.tsx';
 
 /**
  * App component
  * @constructor
  */
 function App(): ReactElement {
-  // Initialize state and ViewModel.
-  const stateHook = useState({ currentArtifactTitle: '', artifactMetas: {} } as StateModel);
-  const appVm = new AppVm(stateHook);
+  // Select from store.
+  const currentArtifactTitle = useStateStore.use.currentArtifactTitle();
+  const isCreatingNewArtifact = useStateStore.use.isCreatingNewArtifact();
 
   return (
     <Box sx={{ m: 2 }}>
@@ -23,15 +23,11 @@ function App(): ReactElement {
         <Stack spacing={2}>
           <Typography variant={'h1'}>Artifact Meta Manager</Typography>
 
-          <ArtifactPicker
-            currentArtifact={appVm.getCurrentArtifactTitle()}
-            onArtifactSelectionChanged={appVm.changeCurrentArtifactTitle}
-            artifactNames={appVm.getArtifactNames()}
-            onArtifactCreated={appVm.createNewArtifact}
-          />
+          <FileLoader />
+          <ArtifactPicker />
 
           {/* Show rest of UI when artifact is selected */}
-          {appVm.getCurrentArtifactTitle().length > 0 && (
+          {(currentArtifactTitle.length > 0 || isCreatingNewArtifact) && (
             <>
               <BasicInfo />
               <Images />
