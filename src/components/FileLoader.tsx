@@ -1,7 +1,7 @@
-import {Button, ButtonGroup} from '@mui/material';
-import {FileDownload, UploadFile} from '@mui/icons-material';
+import { Button, ButtonGroup } from '@mui/material';
+import { FileDownload, UploadFile } from '@mui/icons-material';
 import VisuallyHiddenInput from './VisuallyHiddenInput.tsx';
-import {ChangeEvent, ReactElement, useCallback} from 'react';
+import { ChangeEvent, ReactElement, useCallback } from 'react';
 import useStateStore from '../utils/store-manager.tsx';
 
 /**
