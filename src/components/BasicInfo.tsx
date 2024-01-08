@@ -1,6 +1,6 @@
-import { MenuItem, Stack, TextField, Typography } from '@mui/material';
-import { Quarter, Year } from '../models/artifact-meta-models.ts';
-import { ChangeEvent, ReactElement, useCallback } from 'react';
+import {MenuItem, Stack, TextField, Typography} from '@mui/material';
+import {Quarter, Year} from '../models/artifact-meta-models.ts';
+import {ChangeEvent, ReactElement, useCallback} from 'react';
 import useStateStore from '../utils/store-manager.tsx';
 
 /**
@@ -47,7 +47,7 @@ function IdentifyingInfoStack(): ReactElement {
       <TextField
         select
         label={'Year'}
-        value={currentArtifact.year}
+        value={currentArtifact.year === Year.None ? '' : currentArtifact.year}
         onChange={useCallback(
           (event: ChangeEvent<HTMLInputElement>) => {
             setArtifactYear(parseInt(event.target.value));
@@ -64,7 +64,7 @@ function IdentifyingInfoStack(): ReactElement {
       <TextField
         select
         label={'Quarter'}
-        value={currentArtifact.quarter}
+        value={currentArtifact.quarter === Quarter.None ? '' : currentArtifact.quarter}
         onChange={useCallback(
           (event: ChangeEvent<HTMLInputElement>) => {
             setArtifactQuarter(parseInt(event.target.value));

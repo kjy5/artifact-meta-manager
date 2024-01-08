@@ -23,6 +23,8 @@ interface StoreActions {
 
   // Artifact actions
 
+  downloadArtifactMetas: () => void;
+
   /**
    * Creates a new blank artifact.
    */
