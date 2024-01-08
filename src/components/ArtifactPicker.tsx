@@ -1,7 +1,7 @@
-import {Box, IconButton, MenuItem, TextField} from '@mui/material';
+import { Box, IconButton, MenuItem, TextField } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
-import {Add, Delete} from '@mui/icons-material';
-import React, {ReactElement} from 'react';
+import { Add, Delete } from '@mui/icons-material';
+import React, { ReactElement } from 'react';
 import useStateStore from '../utils/store-manager.tsx';
 
 /**

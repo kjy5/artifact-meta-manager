@@ -1,6 +1,6 @@
-import {MenuItem, Stack, TextField, Typography} from '@mui/material';
-import {Quarter, Year} from '../models/artifact-meta-models.ts';
-import {ReactElement} from 'react';
+import { MenuItem, Stack, TextField, Typography } from '@mui/material';
+import { Quarter, Year } from '../models/artifact-meta-models.ts';
+import { ReactElement } from 'react';
 import useStateStore from '../utils/store-manager.tsx';
 
 /**
