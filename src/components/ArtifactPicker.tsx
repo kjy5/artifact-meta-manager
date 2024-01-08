@@ -14,6 +14,7 @@ function ArtifactPicker(): ReactElement {
   const artifactMetas = useStateStore.use.artifactMetas();
   const setCurrentArtifactIndex = useStateStore.use.setCurrentArtifactIndex();
   const createNewArtifact = useStateStore.use.createNewArtifact();
+  const deleteCurrentArtifact = useStateStore.use.deleteCurrentArtifact();
   const setArtifactIndex = useStateStore.use.setArtifactIndex();
 
   const artifactTitles = artifactMetas.map(({ title }) => title);
@@ -67,7 +68,14 @@ function ArtifactPicker(): ReactElement {
         </Grid>
 
         <Grid xs={'auto'}>
-          <IconButton aria-label={'delete'} color={'error'} disabled={currentArtifactIndex < 0}>
+          <IconButton
+            aria-label={'delete'}
+            color={'error'}
+            disabled={currentArtifactIndex < 0}
+            onClick={() => {
+              deleteCurrentArtifact();
+            }}
+          >
             <Delete />
           </IconButton>
         </Grid>

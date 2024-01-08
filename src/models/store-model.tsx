@@ -11,6 +11,7 @@ interface StoreActions {
 
   // Artifact actions
   createNewArtifact: () => void;
+  deleteCurrentArtifact: () => void;
 
   // Artifact meta setters.
   setArtifactIndex: (index: number) => void;

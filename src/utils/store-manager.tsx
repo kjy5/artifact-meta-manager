@@ -32,6 +32,24 @@ const useStateStoreBase = create<StoreModel>()((set) => ({
     });
   },
 
+  deleteCurrentArtifact: () => {
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of artifact metas
+      const newArtifactMetas = [...artifactMetas];
+
+      // Remove artifact at current index.
+      newArtifactMetas.splice(currentArtifactIndex, 1);
+
+      // Update state.
+      return {
+        currentArtifactIndex: -1,
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
+
   setArtifactIndex: (index: number) => {
     set((state) => {
       const { currentArtifactIndex, artifactMetas } = state;
