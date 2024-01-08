@@ -1,7 +1,7 @@
 import {Box, IconButton, MenuItem, TextField} from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import {Add, Delete} from '@mui/icons-material';
-import React, {ReactElement, useCallback} from 'react';
+import {ChangeEvent, ReactElement, useCallback} from 'react';
 import useStateStore from '../utils/store-manager.tsx';
 
 /**
@@ -29,7 +29,7 @@ function ArtifactPicker(): ReactElement {
             label={'Index'}
             value={currentArtifactIndex < 0 ? '' : currentArtifactIndex}
             onChange={useCallback(
-              (event: React.ChangeEvent<HTMLInputElement>) => {
+              (event: ChangeEvent<HTMLInputElement>) => {
                 setArtifactIndex(parseInt(event.target.value));
               },
               [setArtifactIndex],
@@ -46,7 +46,7 @@ function ArtifactPicker(): ReactElement {
             fullWidth
             value={artifactMetas[currentArtifactIndex]?.title ?? ''}
             onChange={useCallback(
-              (event: React.ChangeEvent<HTMLInputElement>) => {
+              (event: ChangeEvent<HTMLInputElement>) => {
                 setCurrentArtifactIndex(artifactTitles.indexOf(event.target.value));
               },
               [setCurrentArtifactIndex, artifactTitles],

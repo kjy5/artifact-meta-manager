@@ -1,7 +1,7 @@
 import StoreModel from '../models/store-model.tsx';
 import { create } from 'zustand';
 import createSelectors from './create-selectors.ts';
-import { Artifact, createBlankArtifact } from '../models/artifact-meta-models.ts';
+import { createBlankArtifact } from '../models/artifact-meta-models.ts';
 
 const useStateStoreBase = create<StoreModel>()((set) => ({
   // Default default state.
@@ -82,7 +82,7 @@ const useStateStoreBase = create<StoreModel>()((set) => ({
       const newArtifactMetas = [...artifactMetas];
 
       // Update title of artifact at current index.
-      newArtifactMetas[currentArtifactIndex] = { ...newArtifactMetas[currentArtifactIndex], title: title };
+      newArtifactMetas[currentArtifactIndex] = { ...newArtifactMetas[currentArtifactIndex], title };
 
       // Update state.
       return {
@@ -101,8 +101,8 @@ const useStateStoreBase = create<StoreModel>()((set) => ({
       // Update subtitle of artifact at current index.
       newArtifactMetas[currentArtifactIndex] = {
         ...newArtifactMetas[currentArtifactIndex],
-        subtitle: subtitle,
-      } as Artifact;
+        subtitle,
+      };
 
       // Update state.
       return {
@@ -121,8 +121,8 @@ const useStateStoreBase = create<StoreModel>()((set) => ({
       // Update year of artifact at current index.
       newArtifactMetas[currentArtifactIndex] = {
         ...newArtifactMetas[currentArtifactIndex],
-        year: year,
-      } as Artifact;
+        year,
+      };
 
       // Update state.
       return {
@@ -141,8 +141,8 @@ const useStateStoreBase = create<StoreModel>()((set) => ({
       // Update quarter of artifact at current index.
       newArtifactMetas[currentArtifactIndex] = {
         ...newArtifactMetas[currentArtifactIndex],
-        quarter: quarter,
-      } as Artifact;
+        quarter,
+      };
 
       // Update state.
       return {
@@ -161,8 +161,8 @@ const useStateStoreBase = create<StoreModel>()((set) => ({
       // Update text of artifact at current index.
       newArtifactMetas[currentArtifactIndex] = {
         ...newArtifactMetas[currentArtifactIndex],
-        text: text,
-      } as Artifact;
+        text,
+      };
 
       // Update state.
       return {

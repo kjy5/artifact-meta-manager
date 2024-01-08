@@ -41,6 +41,10 @@ interface Artifact {
   embeds: string[];
 }
 
+/**
+ * Factory function for creating a blank artifact.
+ * @returns A blank artifact with non-null fields.
+ */
 const createBlankArtifact = (): Artifact => ({
   title: '',
   subtitle: '',

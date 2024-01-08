@@ -1,6 +1,6 @@
-import { MenuItem, Stack, TextField, Typography } from '@mui/material';
-import { Quarter, Year } from '../models/artifact-meta-models.ts';
-import { ReactElement } from 'react';
+import {MenuItem, Stack, TextField, Typography} from '@mui/material';
+import {Quarter, Year} from '../models/artifact-meta-models.ts';
+import {ChangeEvent, ReactElement, useCallback} from 'react';
 import useStateStore from '../utils/store-manager.tsx';
 
 /**
@@ -24,27 +24,36 @@ function IdentifyingInfoStack(): ReactElement {
         label={'Title'}
         multiline
         value={currentArtifact.title}
-        onChange={(event) => {
-          setArtifactTitle(event.target.value);
-        }}
+        onChange={useCallback(
+          (event: ChangeEvent<HTMLInputElement>) => {
+            setArtifactTitle(event.target.value);
+          },
+          [setArtifactTitle],
+        )}
       />
 
       <TextField
         label={'Subtitle'}
         multiline
         value={currentArtifact.subtitle}
-        onChange={(event) => {
-          setArtifactSubtitle(event.target.value);
-        }}
+        onChange={useCallback(
+          (event: ChangeEvent<HTMLInputElement>) => {
+            setArtifactSubtitle(event.target.value);
+          },
+          [setArtifactSubtitle],
+        )}
       />
 
       <TextField
         select
         label={'Year'}
         value={currentArtifact.year}
-        onChange={(event) => {
-          setArtifactYear(parseInt(event.target.value));
-        }}
+        onChange={useCallback(
+          (event: ChangeEvent<HTMLInputElement>) => {
+            setArtifactYear(parseInt(event.target.value));
+          },
+          [setArtifactYear],
+        )}
       >
         <MenuItem value={Year.Freshman}>Freshman</MenuItem>
         <MenuItem value={Year.Sophomore}>Sophomore</MenuItem>
@@ -56,9 +65,12 @@ function IdentifyingInfoStack(): ReactElement {
         select
         label={'Quarter'}
         value={currentArtifact.quarter}
-        onChange={(event) => {
-          setArtifactQuarter(parseInt(event.target.value));
-        }}
+        onChange={useCallback(
+          (event: ChangeEvent<HTMLInputElement>) => {
+            setArtifactQuarter(parseInt(event.target.value));
+          },
+          [setArtifactQuarter],
+        )}
       >
         <MenuItem value={Quarter.Fall}>Fall</MenuItem>
         <MenuItem value={Quarter.Winter}>Winter</MenuItem>
@@ -92,9 +104,12 @@ function BasicInfo(): ReactElement {
           multiline
           fullWidth
           value={currentArtifact.text}
-          onChange={(event) => {
-            setArtifactText(event.target.value);
-          }}
+          onChange={useCallback(
+            (event: ChangeEvent<HTMLInputElement>) => {
+              setArtifactText(event.target.value);
+            },
+            [setArtifactText],
+          )}
         />
       </Stack>
     </>

@@ -1,6 +1,6 @@
-import { Box, Container, Stack, Typography } from '@mui/material';
+import {Box, Container, Stack, Typography} from '@mui/material';
 import ArtifactPicker from './components/ArtifactPicker.tsx';
-import { ReactElement } from 'react';
+import {ReactElement} from 'react';
 import BasicInfo from './components/BasicInfo.tsx';
 import Images from './components/Images.tsx';
 import Links from './components/Links.tsx';
@@ -26,7 +26,7 @@ function App(): ReactElement {
           <ArtifactPicker />
 
           {/* Show rest of UI when artifact is selected */}
-          {currentArtifactIndex != -1 && (
+          {currentArtifactIndex !== -1 && (
             <>
               <BasicInfo />
               <Images />
