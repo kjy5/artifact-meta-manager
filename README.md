@@ -5,6 +5,7 @@
 [![Dependency Review](https://github.com/kjy5/artifact-meta-manager/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/kjy5/artifact-meta-manager/actions/workflows/dependency-review.yml)
 [![Reformat and Lint](https://github.com/kjy5/artifact-meta-manager/actions/workflows/reformat-and-lint.yml/badge.svg)](https://github.com/kjy5/artifact-meta-manager/actions/workflows/reformat-and-lint.yml)
 [![CodeQL](https://github.com/kjy5/artifact-meta-manager/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/kjy5/artifact-meta-manager/actions/workflows/github-code-scanning/codeql)
+[![DeepSource](https://app.deepsource.com/gh/kjy5/artifact-meta-manager.svg/?label=active+issues&show_trend=true&token=Cm9dfeqGlmlSHXIKQq8MeF-l)](https://app.deepsource.com/gh/kjy5/artifact-meta-manager/)
 
 Tool to manage the metadata of artifacts for
 my [Honors Portfolio](https://kjy5.github.io/honors-portfolio/).
