@@ -1,7 +1,7 @@
-import {Button, ButtonGroup} from '@mui/material';
-import {FileDownload, UploadFile} from '@mui/icons-material';
+import { Button, ButtonGroup } from '@mui/material';
+import { FileDownload, UploadFile } from '@mui/icons-material';
 import VisuallyHiddenInput from './VisuallyHiddenInput.tsx';
-import {ReactElement} from 'react';
+import { ReactElement } from 'react';
 
 /**
  * Component for loading and saving meta files.
