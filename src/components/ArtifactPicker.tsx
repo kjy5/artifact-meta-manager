@@ -1,7 +1,7 @@
-import { Box, IconButton, MenuItem, TextField } from '@mui/material';
+import {Box, IconButton, MenuItem, TextField} from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
-import { Add, Delete } from '@mui/icons-material';
-import React, { ReactElement } from 'react';
+import {Add, Delete} from '@mui/icons-material';
+import React, {ReactElement, useCallback} from 'react';
 import useStateStore from '../utils/store-manager.tsx';
 
 /**
@@ -28,9 +28,12 @@ function ArtifactPicker(): ReactElement {
             inputProps={{ min: 0, max: artifactMetas.length - 1 }}
             label={'Index'}
             value={currentArtifactIndex < 0 ? '' : currentArtifactIndex}
-            onChange={(event) => {
-              setArtifactIndex(parseInt(event.target.value));
-            }}
+            onChange={useCallback(
+              (event: React.ChangeEvent<HTMLInputElement>) => {
+                setArtifactIndex(parseInt(event.target.value));
+              },
+              [setArtifactIndex],
+            )}
             disabled={currentArtifactIndex < 0}
             fullWidth
           />
@@ -42,9 +45,12 @@ function ArtifactPicker(): ReactElement {
             label={'Artifact'}
             fullWidth
             value={artifactMetas[currentArtifactIndex]?.title ?? ''}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              setCurrentArtifactIndex(artifactTitles.indexOf(event.target.value));
-            }}
+            onChange={useCallback(
+              (event: React.ChangeEvent<HTMLInputElement>) => {
+                setCurrentArtifactIndex(artifactTitles.indexOf(event.target.value));
+              },
+              [setCurrentArtifactIndex, artifactTitles],
+            )}
           >
             {artifactTitles.map((title) => (
               <MenuItem key={`key-${title}`} value={title}>
@@ -58,9 +64,7 @@ function ArtifactPicker(): ReactElement {
           <IconButton
             aria-label={'add'}
             color={'primary'}
-            onClick={() => {
-              createNewArtifact();
-            }}
+            onClick={createNewArtifact}
             disabled={artifactTitles.includes('')}
           >
             <Add />
@@ -72,9 +76,7 @@ function ArtifactPicker(): ReactElement {
             aria-label={'delete'}
             color={'error'}
             disabled={currentArtifactIndex < 0}
-            onClick={() => {
-              deleteCurrentArtifact();
-            }}
+            onClick={deleteCurrentArtifact}
           >
             <Delete />
           </IconButton>
