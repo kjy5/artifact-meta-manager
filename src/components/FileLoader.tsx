@@ -1,7 +1,7 @@
 import {Button, ButtonGroup} from '@mui/material';
 import {FileDownload, UploadFile} from '@mui/icons-material';
 import VisuallyHiddenInput from './VisuallyHiddenInput.tsx';
-import {ReactElement} from 'react';
+import {ChangeEvent, ReactElement, useCallback} from 'react';
 import useStateStore from '../utils/store-manager.tsx';
 
 /**
@@ -9,14 +9,26 @@ import useStateStore from '../utils/store-manager.tsx';
  * @constructor
  */
 function FileLoader(): ReactElement {
-    const artifactMetas = useStateStore.use.artifactMetas();
+  const artifactMetas = useStateStore.use.artifactMetas();
+  const uploadArtifactMetas = useStateStore.use.uploadArtifactMetas();
   const downloadArtifactMetas = useStateStore.use.downloadArtifactMetas();
 
   return (
     <ButtonGroup>
       <Button aria-label={'upload meta file'} component={'label'} startIcon={<UploadFile />}>
         Upload Meta File
-        <VisuallyHiddenInput type={'file'} accept={'image/*'} />
+        <VisuallyHiddenInput
+          type={'file'}
+          accept={'application/json'}
+          onChange={useCallback(
+            (event: ChangeEvent<HTMLInputElement>) => {
+              if (event.target.files) {
+                uploadArtifactMetas(event.target.files[0]);
+              }
+            },
+            [uploadArtifactMetas],
+          )}
+        />
       </Button>
       <Button
         aria-label={'download meta file'}

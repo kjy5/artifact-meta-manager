@@ -23,6 +23,8 @@ interface StoreActions {
 
   // Artifact actions
 
+  uploadArtifactMetas: (file: File) => void;
+
   downloadArtifactMetas: () => void;
 
   /**
