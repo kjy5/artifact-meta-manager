@@ -26,7 +26,7 @@ function App(): ReactElement {
           <ArtifactPicker />
 
           {/* Show rest of UI when artifact is selected */}
-          {currentArtifactIndex > 0 && (
+          {currentArtifactIndex >= 0 && (
             <>
               <BasicInfo />
               <Images />

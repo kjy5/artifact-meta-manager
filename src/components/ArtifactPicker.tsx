@@ -1,4 +1,5 @@
-import {IconButton, MenuItem, Stack, TextField} from '@mui/material';
+import {Box, IconButton, MenuItem, TextField} from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
 import {Add, Delete} from '@mui/icons-material';
 import React, {ReactElement} from 'react';
 import useStateStore from '../utils/store-manager.tsx';
@@ -18,52 +19,58 @@ function ArtifactPicker(): ReactElement {
   const artifactTitles = artifactMetas.map(({ title }) => title);
 
   return (
-    <Stack spacing={1}>
-      <Stack direction={'row'} spacing={2}>
-        <TextField
-          type={'number'}
-          inputProps={{ min: 0, max: artifactMetas.length - 1 }}
-          label={'Index'}
-          value={currentArtifactIndex > 0 ? currentArtifactIndex : ''}
-          onChange={(event) => {
-            setArtifactIndex(parseInt(event.target.value));
-          }}
-        />
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={2} alignItems={'center'}>
+        <Grid xs={1}>
+          <TextField
+            type={'number'}
+            inputProps={{ min: 0, max: artifactMetas.length - 1 }}
+            label={'Index'}
+            value={currentArtifactIndex >= 0 ? currentArtifactIndex : ''}
+            onChange={(event) => {
+              setArtifactIndex(parseInt(event.target.value));
+            }}
+            fullWidth
+          />
+        </Grid>
 
-        <TextField
-          select
-          label={'Artifact'}
-          fullWidth
-          value={currentArtifactIndex > 0 ? artifactMetas[currentArtifactIndex].title : ''}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setCurrentArtifactIndex(artifactTitles.indexOf(event.target.value));
-          }}
-        >
-          {artifactTitles.map((title) => (
-            <MenuItem key={title} value={title}>
-              {title}
-            </MenuItem>
-          ))}
-          <MenuItem key={'test'} value={'test'}>
-            test
-          </MenuItem>
-        </TextField>
+        <Grid xs>
+          <TextField
+            select
+            label={'Artifact'}
+            fullWidth
+            value={currentArtifactIndex >= 0 ? artifactMetas[currentArtifactIndex].title : ''}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              setCurrentArtifactIndex(artifactTitles.indexOf(event.target.value));
+            }}
+          >
+            {artifactTitles.map((title) => (
+              <MenuItem key={title} value={title}>
+                {title}
+              </MenuItem>
+            ))}
+          </TextField>
+        </Grid>
 
-        <IconButton
-          aria-label={'add'}
-          color={'primary'}
-          onClick={() => {
-            createNewArtifact();
-          }}
-        >
-          <Add />
-        </IconButton>
+        <Grid xs={'auto'}>
+          <IconButton
+            aria-label={'add'}
+            color={'primary'}
+            onClick={() => {
+              createNewArtifact();
+            }}
+          >
+            <Add />
+          </IconButton>
+        </Grid>
 
-        <IconButton aria-label={'delete'} color={'error'}>
-          <Delete />
-        </IconButton>
-      </Stack>
-    </Stack>
+        <Grid xs={'auto'}>
+          <IconButton aria-label={'delete'} color={'error'}>
+            <Delete />
+          </IconButton>
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
 
