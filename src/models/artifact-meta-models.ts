@@ -37,14 +37,30 @@ interface Artifact {
   quarter: Quarter;
   text: string;
   images: Image[];
-  Links: Link[];
-  Embeds: string[];
+  links: Link[];
+  embeds: string[];
 }
+
+/**
+ * Factory function for creating a blank artifact.
+ * @returns A blank artifact with non-null fields.
+ */
+const createBlankArtifact = (): Artifact => ({
+  title: '',
+  subtitle: '',
+  year: Year.Freshman,
+  quarter: Quarter.Fall,
+  text: '',
+  images: [],
+  links: [],
+  embeds: [],
+});
 
 /**
  * A map of artifact names to their metadata.
  */
-type ArtifactMetas = Record<string, Artifact>;
+type ArtifactMetas = Artifact[];
 
 export { Quarter, Year };
 export type { Artifact, ArtifactMetas, Image, Link };
+export { createBlankArtifact };

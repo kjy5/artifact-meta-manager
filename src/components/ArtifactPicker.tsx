@@ -1,43 +1,88 @@
-import { Button, ButtonGroup, IconButton, MenuItem, Stack, TextField } from '@mui/material';
-import { Add, Delete, FileDownload, UploadFile } from '@mui/icons-material';
-import VisuallyHiddenInput from './VisuallyHiddenInput.tsx';
-import { ReactElement } from 'react';
+import { Box, IconButton, MenuItem, TextField } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
+import { Add, Delete } from '@mui/icons-material';
+import { ChangeEvent, ReactElement, useCallback } from 'react';
+import useStateStore from '../utils/store-manager.tsx';
 
 /**
  * View for picking artifacts and loading meta file.
  * @constructor
  */
 function ArtifactPicker(): ReactElement {
+  // Select from store.
+  const currentArtifactIndex = useStateStore.use.currentArtifactIndex();
+  const artifactMetas = useStateStore.use.artifactMetas();
+  const setCurrentArtifactIndex = useStateStore.use.setCurrentArtifactIndex();
+  const createNewArtifact = useStateStore.use.createNewArtifact();
+  const deleteCurrentArtifact = useStateStore.use.deleteCurrentArtifact();
+  const setArtifactIndex = useStateStore.use.setArtifactIndex();
+
+  const artifactTitles = artifactMetas.map(({ title }) => title);
+
   return (
-    <Stack spacing={1}>
-      {/* Artifact meta file upload download */}
-      <ButtonGroup>
-        <Button aria-label={'upload meta file'} component={'label'} startIcon={<UploadFile />}>
-          Upload Meta File
-          <VisuallyHiddenInput type={'file'} accept={'image/*'} />
-        </Button>
-        <Button aria-label={'download meta file'} component={'label'} startIcon={<FileDownload />}>
-          Download Meta File
-          <VisuallyHiddenInput type={'file'} accept={'image/*'} />
-        </Button>
-      </ButtonGroup>
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={2} alignItems={'center'}>
+        <Grid xs={1}>
+          <TextField
+            type={'number'}
+            inputProps={{ min: 0, max: artifactMetas.length - 1 }}
+            label={'Index'}
+            value={currentArtifactIndex < 0 ? '' : currentArtifactIndex}
+            onChange={useCallback(
+              (event: ChangeEvent<HTMLInputElement>) => {
+                setArtifactIndex(parseInt(event.target.value));
+              },
+              [setArtifactIndex],
+            )}
+            disabled={currentArtifactIndex < 0}
+            fullWidth
+          />
+        </Grid>
 
-      <Stack direction={'row'} spacing={2}>
-        <TextField select label={'Artifact'} fullWidth>
-          <MenuItem value="1">Artifact 1</MenuItem>
-          <MenuItem value="2">Artifact 2</MenuItem>
-          <MenuItem value="3">Artifact 387293487923879</MenuItem>
-        </TextField>
+        <Grid xs>
+          <TextField
+            select
+            label={'Artifact'}
+            fullWidth
+            value={artifactMetas[currentArtifactIndex]?.title ?? ''}
+            onChange={useCallback(
+              (event: ChangeEvent<HTMLInputElement>) => {
+                setCurrentArtifactIndex(artifactTitles.indexOf(event.target.value));
+              },
+              [setCurrentArtifactIndex, artifactTitles],
+            )}
+          >
+            {artifactTitles.map((title) => (
+              <MenuItem key={`key-${title}`} value={title}>
+                {title}
+              </MenuItem>
+            ))}
+          </TextField>
+        </Grid>
 
-        <IconButton aria-label={'add'} color={'primary'}>
-          <Add />
-        </IconButton>
+        <Grid xs={'auto'}>
+          <IconButton
+            aria-label={'add'}
+            color={'primary'}
+            onClick={createNewArtifact}
+            disabled={artifactTitles.includes('')}
+          >
+            <Add />
+          </IconButton>
+        </Grid>
 
-        <IconButton aria-label={'delete'} color={'error'}>
-          <Delete />
-        </IconButton>
-      </Stack>
-    </Stack>
+        <Grid xs={'auto'}>
+          <IconButton
+            aria-label={'delete'}
+            color={'error'}
+            disabled={currentArtifactIndex < 0}
+            onClick={deleteCurrentArtifact}
+          >
+            <Delete />
+          </IconButton>
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
 
