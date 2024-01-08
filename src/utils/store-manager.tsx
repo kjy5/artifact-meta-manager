@@ -1,15 +1,36 @@
 import StoreModel from '../models/store-model.tsx';
 import { create } from 'zustand';
 import createSelectors from './create-selectors.ts';
-import { createBlankArtifact } from '../models/artifact-meta-models.ts';
+import { ArtifactMetas, createBlankArtifact } from '../models/artifact-meta-models.ts';
 
-const useStateStoreBase = create<StoreModel>()((set) => ({
+const useStateStoreBase = create<StoreModel>()((set, get) => ({
   // Default default state.
   currentArtifactIndex: -1,
   isCreatingNewArtifact: false,
   artifactMetas: [],
 
   // Implement actions.
+  uploadArtifactMetas: (file: File) => {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const artifactMetas = JSON.parse(event.target?.result as string) as ArtifactMetas;
+      set({ artifactMetas });
+    };
+    reader.onerror = (event) => {
+      console.error('Error reading file. Please try again.');
+      console.error(event);
+    };
+    reader.readAsText(file);
+  },
+
+  downloadArtifactMetas: () => {
+    const blob = new Blob([JSON.stringify(get().artifactMetas)], { type: 'application/json' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'artifact-metas.json';
+    link.click();
+  },
+
   setCurrentArtifactIndex: (currentArtifactIndex: number) => {
     set({ currentArtifactIndex });
   },

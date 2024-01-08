@@ -1,4 +1,5 @@
 enum Year {
+  None = -1,
   Freshman,
   Sophomore,
   Junior,
@@ -6,6 +7,7 @@ enum Year {
 }
 
 enum Quarter {
+  None = -1,
   Fall,
   Winter,
   Spring,
@@ -48,8 +50,8 @@ interface Artifact {
 const createBlankArtifact = (): Artifact => ({
   title: '',
   subtitle: '',
-  year: Year.Freshman,
-  quarter: Quarter.Fall,
+  year: Year.None,
+  quarter: Quarter.None,
   text: '',
   images: [],
   links: [],
