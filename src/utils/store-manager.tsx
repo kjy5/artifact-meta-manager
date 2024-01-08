@@ -17,8 +17,8 @@ const useStateStoreBase = create<StoreModel>()((set, get) => ({
       set({ artifactMetas });
     };
     reader.onerror = (event) => {
+      console.error('Error reading file. Please try again.');
       console.error(event);
-      alert('Error reading file. Please try again.');
     };
     reader.readAsText(file);
   },

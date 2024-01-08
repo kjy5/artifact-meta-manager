@@ -23,8 +23,15 @@ interface StoreActions {
 
   // Artifact actions
 
+  /**
+   * Loads an artifact meta file and replace the in-memory artifact metas.
+   * @param file The file uploaded.
+   */
   uploadArtifactMetas: (file: File) => void;
 
+  /**
+   * Downloads the current artifact metas as a JSON file.
+   */
   downloadArtifactMetas: () => void;
 
   /**
