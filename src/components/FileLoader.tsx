@@ -9,6 +9,7 @@ import useStateStore from '../utils/store-manager.tsx';
  * @constructor
  */
 function FileLoader(): ReactElement {
+    const artifactMetas = useStateStore.use.artifactMetas();
   const downloadArtifactMetas = useStateStore.use.downloadArtifactMetas();
 
   return (
@@ -17,7 +18,12 @@ function FileLoader(): ReactElement {
         Upload Meta File
         <VisuallyHiddenInput type={'file'} accept={'image/*'} />
       </Button>
-      <Button aria-label={'download meta file'} startIcon={<FileDownload />} onClick={downloadArtifactMetas}>
+      <Button
+        aria-label={'download meta file'}
+        startIcon={<FileDownload />}
+        onClick={downloadArtifactMetas}
+        disabled={artifactMetas.length === 0}
+      >
         Download Meta File
       </Button>
     </ButtonGroup>
