@@ -14,7 +14,11 @@ interface StoreActions {
 
   // Artifact meta setters.
   setArtifactIndex: (index: number) => void;
-  // setArtifactTitle: (title: string) => void;
+  setArtifactTitle: (title: string) => void;
+  setArtifactSubtitle: (subtitle: string) => void;
+  setArtifactYear: (year: number) => void;
+  setArtifactQuarter: (quarter: number) => void;
+  setArtifactText: (text: string) => void;
 }
 
 type StoreModel = StoreState & StoreActions;

@@ -26,10 +26,11 @@ function ArtifactPicker(): ReactElement {
             type={'number'}
             inputProps={{ min: 0, max: artifactMetas.length - 1 }}
             label={'Index'}
-            value={currentArtifactIndex >= 0 ? currentArtifactIndex : ''}
+            value={currentArtifactIndex < 0 ? '' : currentArtifactIndex}
             onChange={(event) => {
               setArtifactIndex(parseInt(event.target.value));
             }}
+            disabled={currentArtifactIndex < 0}
             fullWidth
           />
         </Grid>
@@ -39,13 +40,13 @@ function ArtifactPicker(): ReactElement {
             select
             label={'Artifact'}
             fullWidth
-            value={currentArtifactIndex >= 0 ? artifactMetas[currentArtifactIndex].title : ''}
+            value={artifactMetas[currentArtifactIndex]?.title ?? ''}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               setCurrentArtifactIndex(artifactTitles.indexOf(event.target.value));
             }}
           >
             {artifactTitles.map((title) => (
-              <MenuItem key={title} value={title}>
+              <MenuItem key={`key-${title}`} value={title}>
                 {title}
               </MenuItem>
             ))}
@@ -59,13 +60,14 @@ function ArtifactPicker(): ReactElement {
             onClick={() => {
               createNewArtifact();
             }}
+            disabled={artifactTitles.includes('')}
           >
             <Add />
           </IconButton>
         </Grid>
 
         <Grid xs={'auto'}>
-          <IconButton aria-label={'delete'} color={'error'}>
+          <IconButton aria-label={'delete'} color={'error'} disabled={currentArtifactIndex < 0}>
             <Delete />
           </IconButton>
         </Grid>

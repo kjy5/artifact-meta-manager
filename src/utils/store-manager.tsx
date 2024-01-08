@@ -1,13 +1,13 @@
 import StoreModel from '../models/store-model.tsx';
 import { create } from 'zustand';
 import createSelectors from './create-selectors.ts';
-import { Artifact, ArtifactMetas } from '../models/artifact-meta-models.ts';
+import { Artifact, createBlankArtifact } from '../models/artifact-meta-models.ts';
 
 const useStateStoreBase = create<StoreModel>()((set) => ({
   // Default default state.
   currentArtifactIndex: -1,
   isCreatingNewArtifact: false,
-  artifactMetas: [] as ArtifactMetas,
+  artifactMetas: [],
 
   // Implement actions.
   setCurrentArtifactIndex: (currentArtifactIndex: number) => {
@@ -22,7 +22,7 @@ const useStateStoreBase = create<StoreModel>()((set) => ({
       const newArtifactMetas = [...artifactMetas];
 
       // Create new blank entry.
-      newArtifactMetas.push({} as Artifact);
+      newArtifactMetas.push(createBlankArtifact());
 
       // Update state to point to new entry.
       return {
@@ -56,27 +56,102 @@ const useStateStoreBase = create<StoreModel>()((set) => ({
     });
   },
 
-  // setArtifactTitle: (title: string) => {
-  //   set((state) => {
-  //     const { currentArtifactIndex, artifactMetas } = state;
-  //     console.log(artifactMetas)
-  //
-  //     // Create copy of artifact metas
-  //     const newArtifactMetas = Object.assign(new Map<string, Artifact>(), artifactMetas);
-  //
-  //     // Create entry with new title and pull from old entry if it exists.
-  //     newArtifactMetas.set(title, { title: title } as Artifact);
-  //
-  //     // Delete old entry if it exists.
-  //     newArtifactMetas.delete(currentArtifactTitle);
-  //
-  //     // Update state.
-  //     return {
-  //       currentArtifactTitle: title,
-  //       artifactMetas: newArtifactMetas,
-  //     };
-  //   });
-  // },
+  setArtifactTitle: (title: string) => {
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of artifact metas
+      const newArtifactMetas = [...artifactMetas];
+
+      // Update title of artifact at current index.
+      newArtifactMetas[currentArtifactIndex] = { ...newArtifactMetas[currentArtifactIndex], title: title };
+
+      // Update state.
+      return {
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
+
+  setArtifactSubtitle: (subtitle: string) => {
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of artifact metas
+      const newArtifactMetas = [...artifactMetas];
+
+      // Update subtitle of artifact at current index.
+      newArtifactMetas[currentArtifactIndex] = {
+        ...newArtifactMetas[currentArtifactIndex],
+        subtitle: subtitle,
+      } as Artifact;
+
+      // Update state.
+      return {
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
+
+  setArtifactYear: (year: number) => {
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of artifact metas
+      const newArtifactMetas = [...artifactMetas];
+
+      // Update year of artifact at current index.
+      newArtifactMetas[currentArtifactIndex] = {
+        ...newArtifactMetas[currentArtifactIndex],
+        year: year,
+      } as Artifact;
+
+      // Update state.
+      return {
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
+
+  setArtifactQuarter: (quarter: number) => {
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of artifact metas
+      const newArtifactMetas = [...artifactMetas];
+
+      // Update quarter of artifact at current index.
+      newArtifactMetas[currentArtifactIndex] = {
+        ...newArtifactMetas[currentArtifactIndex],
+        quarter: quarter,
+      } as Artifact;
+
+      // Update state.
+      return {
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
+
+  setArtifactText: (text: string) => {
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of artifact metas
+      const newArtifactMetas = [...artifactMetas];
+
+      // Update text of artifact at current index.
+      newArtifactMetas[currentArtifactIndex] = {
+        ...newArtifactMetas[currentArtifactIndex],
+        text: text,
+      } as Artifact;
+
+      // Update state.
+      return {
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
 }));
 
 const useStateStore = createSelectors(useStateStoreBase);
