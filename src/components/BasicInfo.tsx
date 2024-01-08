@@ -1,15 +1,26 @@
-import { MenuItem, Stack, TextField, Typography } from '@mui/material';
-import { Quarter, Year } from '../models/artifact-meta-models.ts';
-import { ReactElement } from 'react';
+import {MenuItem, Stack, TextField, Typography} from '@mui/material';
+import {Quarter, Year} from '../models/artifact-meta-models.ts';
+import {ReactElement} from 'react';
+import useStateStore from '../utils/store-manager.tsx';
 
 /**
  * Stack of identifying info fields.
  * @constructor
  */
 function IdentifyingInfoStack(): ReactElement {
+  const currentArtifactIndex = useStateStore.use.currentArtifactIndex();
+  const artifactMetas = useStateStore.use.artifactMetas();
+
   return (
     <Stack spacing={1}>
-      <TextField label={'Title'} multiline />
+      <TextField
+        label={'Title'}
+        multiline
+        value={artifactMetas[currentArtifactIndex].title}
+        // onChange={(event) => {
+        //   // setArtifactTitle(event.target.value);
+        // }}
+      />
 
       <TextField label={'Subtitle'} multiline />
 

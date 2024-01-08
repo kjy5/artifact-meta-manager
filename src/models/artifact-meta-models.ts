@@ -44,7 +44,7 @@ interface Artifact {
 /**
  * A map of artifact names to their metadata.
  */
-type ArtifactMetas = Record<string, Artifact>;
+type ArtifactMetas = Artifact[];
 
 export { Quarter, Year };
 export type { Artifact, ArtifactMetas, Image, Link };

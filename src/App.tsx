@@ -14,8 +14,7 @@ import FileLoader from './components/FileLoader.tsx';
  */
 function App(): ReactElement {
   // Select from store.
-  const currentArtifactTitle = useStateStore.use.currentArtifactTitle();
-  const isCreatingNewArtifact = useStateStore.use.isCreatingNewArtifact();
+  const currentArtifactIndex = useStateStore.use.currentArtifactIndex();
 
   return (
     <Box sx={{ m: 2 }}>
@@ -27,7 +26,7 @@ function App(): ReactElement {
           <ArtifactPicker />
 
           {/* Show rest of UI when artifact is selected */}
-          {(currentArtifactTitle.length > 0 || isCreatingNewArtifact) && (
+          {currentArtifactIndex > 0 && (
             <>
               <BasicInfo />
               <Images />

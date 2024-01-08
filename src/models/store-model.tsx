@@ -1,14 +1,20 @@
 import { ArtifactMetas } from './artifact-meta-models.ts';
 
 interface StoreState {
-  currentArtifactTitle: string;
-  isCreatingNewArtifact: boolean;
+  currentArtifactIndex: number;
   artifactMetas: ArtifactMetas;
 }
 
 interface StoreActions {
-  setCurrentArtifactTitle: (currentArtifactTitle: string) => void;
-  setIsCreatingNewArtifact: (isCreatingNewArtifact: boolean) => void;
+  // State setters.
+  setCurrentArtifactIndex: (currentArtifactIndex: number) => void;
+
+  // Artifact actions
+  createNewArtifact: () => void;
+
+  // Artifact meta setters.
+  setArtifactIndex: (index: number) => void;
+  // setArtifactTitle: (title: string) => void;
 }
 
 type StoreModel = StoreState & StoreActions;
