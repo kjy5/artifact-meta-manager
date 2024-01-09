@@ -300,6 +300,40 @@ const useStateStoreBase = create<StoreModel>()((set, get) => ({
       };
     });
   },
+
+  setImageWidth: (index: number, width: number) => {
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of artifact metas
+      const newArtifactMetas = [...artifactMetas];
+
+      // Update width of image at index of current artifact.
+      newArtifactMetas[currentArtifactIndex].images[index].width = width;
+
+      // Update state.
+      return {
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
+
+  setImageHeight: (index: number, height: number) => {
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of artifact metas
+      const newArtifactMetas = [...artifactMetas];
+
+      // Update height of image at index of current artifact.
+      newArtifactMetas[currentArtifactIndex].images[index].height = height;
+
+      // Update state.
+      return {
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
 }));
 
 const useStateStore = createSelectors(useStateStoreBase);

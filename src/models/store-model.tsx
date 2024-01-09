@@ -117,6 +117,20 @@ interface StoreActions {
    * @param src The src to set.
    */
   setImageThumbnailSrc: (index: number, src: string) => void;
+
+  /**
+   * Sets the image width metadata of the current artifact.
+   * @param index
+   * @param width
+   */
+  setImageWidth: (index: number, width: number) => void;
+
+  /**
+   * Sets the image height metadata of the current artifact.
+   * @param index
+   * @param height
+   */
+  setImageHeight: (index: number, height: number) => void;
 }
 
 type StoreModel = StoreState & StoreActions;

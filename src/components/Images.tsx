@@ -15,7 +15,7 @@ import {
 import {Add, AddPhotoAlternate, ArrowDropDown, ArrowDropUp, Check, Delete} from '@mui/icons-material';
 import VisuallyHiddenInput from './VisuallyHiddenInput.tsx';
 import {ChangeEvent, ReactElement, useCallback} from 'react';
-import {Image} from '../models/artifact-meta-models.ts';
+import {ImageMeta} from '../models/artifact-meta-models.ts';
 import useStateStore from '../utils/store-manager.tsx';
 
 /**
@@ -43,9 +43,12 @@ function HeaderRow(): ReactElement {
  * Row for a single image.
  * @constructor
  */
-function ImageRow({ index, image }: { index: number; image: Image }): ReactElement {
+function ImageRow({index, image}: { index: number; image: ImageMeta }): ReactElement {
+    const allAssetPaths = useStateStore.use.allAssetPaths();
   const setImageSrc = useStateStore.use.setImageSrc();
-    const setImageThumbnailSrc = useStateStore.use.setImageThumbnailSrc();
+  const setImageThumbnailSrc = useStateStore.use.setImageThumbnailSrc();
+  const setImageWidth = useStateStore.use.setImageWidth();
+  const setImageHeight = useStateStore.use.setImageHeight();
 
   return (
     <TableRow>
@@ -67,6 +70,7 @@ function ImageRow({ index, image }: { index: number; image: Image }): ReactEleme
             aria-label={'upload image'}
             component={'label'}
             startIcon={image.src.length > 0 ? <Check /> : <AddPhotoAlternate />}
+            disabled={allAssetPaths.length === 0}
           >
             Upload
             <VisuallyHiddenInput
@@ -75,10 +79,19 @@ function ImageRow({ index, image }: { index: number; image: Image }): ReactEleme
               onChange={useCallback(
                 (event: ChangeEvent<HTMLInputElement>) => {
                   if (event.target.files) {
+                    // Update image src.
                     setImageSrc(index, event.target.files[0].name);
+
+                    // Pull width and height from image.
+                    const image = new Image();
+                    image.src = URL.createObjectURL(event.target.files[0]);
+                    image.onload = () => {
+                      setImageWidth(index, image.width);
+                      setImageHeight(index, image.height);
+                    };
                   }
                 },
-                [index, setImageSrc],
+                [index, setImageSrc, setImageWidth, setImageHeight],
               )}
             />
           </Button>
@@ -102,6 +115,7 @@ function ImageRow({ index, image }: { index: number; image: Image }): ReactEleme
             aria-label={'upload thumbnail'}
             component={'label'}
             startIcon={image.thumbnailSrc.length > 0 ? <Check /> : <AddPhotoAlternate />}
+            disabled={allAssetPaths.length === 0}
           >
             Upload
             <VisuallyHiddenInput
@@ -113,7 +127,7 @@ function ImageRow({ index, image }: { index: number; image: Image }): ReactEleme
                     setImageThumbnailSrc(index, event.target.files[0].name);
                   }
                 },
-                [index, setImageSrc],
+                [index, setImageThumbnailSrc],
               )}
             />
           </Button>
@@ -140,11 +154,29 @@ function ImageRow({ index, image }: { index: number; image: Image }): ReactEleme
       </TableCell>
 
       <TableCell>
-        <TextField placeholder={'Width'} />
+        <TextField
+          placeholder={'Width'}
+          value={image.width}
+          onChange={useCallback(
+            (event: ChangeEvent<HTMLInputElement>) => {
+              setImageWidth(index, parseInt(event.target.value));
+            },
+            [index, setImageWidth],
+          )}
+        />
       </TableCell>
 
       <TableCell>
-        <TextField placeholder={'Height'} />
+        <TextField
+          placeholder={'Height'}
+          value={image.height}
+          onChange={useCallback(
+            (event: ChangeEvent<HTMLInputElement>) => {
+              setImageHeight(index, parseInt(event.target.value));
+            },
+            [index, setImageHeight],
+          )}
+        />
       </TableCell>
 
       <TableCell>
