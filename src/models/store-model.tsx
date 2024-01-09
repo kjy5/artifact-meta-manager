@@ -110,6 +110,13 @@ interface StoreActions {
    * @param src The src to set.
    */
   setImageSrc: (index: number, src: string) => void;
+
+  /**
+   * Sets the image thumbnail src metadata of the current artifact.
+   * @param index The index of the image in the current artifact.
+   * @param src The src to set.
+   */
+  setImageThumbnailSrc: (index: number, src: string) => void;
 }
 
 type StoreModel = StoreState & StoreActions;

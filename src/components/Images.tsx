@@ -45,6 +45,8 @@ function HeaderRow(): ReactElement {
  */
 function ImageRow({ index, image }: { index: number; image: Image }): ReactElement {
   const setImageSrc = useStateStore.use.setImageSrc();
+    const setImageThumbnailSrc = useStateStore.use.setImageThumbnailSrc();
+
   return (
     <TableRow>
       {/* Placement */}
@@ -108,7 +110,7 @@ function ImageRow({ index, image }: { index: number; image: Image }): ReactEleme
               onChange={useCallback(
                 (event: ChangeEvent<HTMLInputElement>) => {
                   if (event.target.files) {
-                    setImageSrc(index, event.target.files[0].name);
+                    setImageThumbnailSrc(index, event.target.files[0].name);
                   }
                 },
                 [index, setImageSrc],
@@ -118,12 +120,12 @@ function ImageRow({ index, image }: { index: number; image: Image }): ReactEleme
           <TextField
             placeholder={'Thumbnail URL'}
             multiline
-            value={image.src}
+            value={image.thumbnailSrc}
             onChange={useCallback(
               (event: ChangeEvent<HTMLInputElement>) => {
-                setImageSrc(index, event.target.value);
+                setImageThumbnailSrc(index, event.target.value);
               },
-              [index, setImageSrc],
+              [index, setImageThumbnailSrc],
             )}
           />
         </Stack>

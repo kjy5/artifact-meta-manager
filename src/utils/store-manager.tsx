@@ -273,6 +273,33 @@ const useStateStoreBase = create<StoreModel>()((set, get) => ({
       };
     });
   },
+
+  setImageThumbnailSrc: (index: number, src: string) => {
+    // Search for image src in all asset paths.
+    const allAssetPaths = get().allAssetPaths;
+    const assetPath = allAssetPaths.find((path) => path.endsWith(src));
+
+    // Shortcut exit if not found.
+    if (!assetPath) {
+      return;
+    }
+
+    // Update state.
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of artifact metas
+      const newArtifactMetas = [...artifactMetas];
+
+      // Update thumbnail src of image at index of current artifact.
+      newArtifactMetas[currentArtifactIndex].images[index].thumbnailSrc = assetPath;
+
+      // Update state.
+      return {
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
 }));
 
 const useStateStore = createSelectors(useStateStoreBase);
