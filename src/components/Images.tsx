@@ -1,21 +1,21 @@
 import {
-  Button,
-  ButtonGroup,
-  IconButton,
-  Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  TextField,
-  Typography,
+    Button,
+    ButtonGroup,
+    IconButton,
+    Stack,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    TextField,
+    Typography,
 } from '@mui/material';
-import { Add, AddPhotoAlternate, ArrowDropDown, ArrowDropUp, Check, Delete } from '@mui/icons-material';
+import {Add, AddPhotoAlternate, ArrowDropDown, ArrowDropUp, Check, Delete} from '@mui/icons-material';
 import VisuallyHiddenInput from './VisuallyHiddenInput.tsx';
-import { ChangeEvent, ReactElement, useCallback } from 'react';
-import { ImageMeta } from '../models/artifact-meta-models.ts';
+import {ChangeEvent, ReactElement, useCallback} from 'react';
+import {ImageMeta} from '../models/artifact-meta-models.ts';
 import useStateStore from '../utils/store-manager.tsx';
 
 /**
@@ -236,7 +236,7 @@ function Images(): ReactElement {
           </TableHead>
           <TableBody>
             {artifactMetas[currentArtifactIndex].images.map((image, index) => (
-              <ImageRow key={index} index={index} image={image} />
+              <ImageRow key={`image-${index}`} index={index} image={image} />
             ))}
           </TableBody>
         </Table>
