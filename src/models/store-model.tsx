@@ -55,6 +55,17 @@ interface StoreActions {
    */
   deleteCurrentArtifact: () => void;
 
+  /**
+   * Creates a new blank image in the current artifact.
+   */
+  createNewImage: () => void;
+
+  /**
+   * Deletes an image from the current artifact.
+   * @param index The index of the image to delete.
+   */
+  deleteImage: (index: number) => void;
+
   // Artifact meta setters.
 
   /**
@@ -92,6 +103,13 @@ interface StoreActions {
    * @param text The text to set.
    */
   setArtifactText: (text: string) => void;
+
+  /**
+   * Sets the image src metadata of the current artifact.
+   * @param index The index of the image in the current artifact.
+   * @param src The src to set.
+   */
+  setImageSrc: (index: number, src: string) => void;
 }
 
 type StoreModel = StoreState & StoreActions;

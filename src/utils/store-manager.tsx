@@ -1,7 +1,7 @@
 import StoreModel from '../models/store-model.tsx';
 import { create } from 'zustand';
 import createSelectors from './create-selectors.ts';
-import { ArtifactMetas, createBlankArtifact } from '../models/artifact-meta-models.ts';
+import { ArtifactMetas, Quarter, Year } from '../models/artifact-meta-models.ts';
 
 const useStateStoreBase = create<StoreModel>()((set, get) => ({
   // Default default state.
@@ -38,7 +38,6 @@ const useStateStoreBase = create<StoreModel>()((set, get) => ({
 
   setAllAssetPaths: (allAssetPaths: string[]) => {
     set({ allAssetPaths });
-    console.log(allAssetPaths);
   },
 
   createNewArtifact: () => {
@@ -49,7 +48,16 @@ const useStateStoreBase = create<StoreModel>()((set, get) => ({
       const newArtifactMetas = [...artifactMetas];
 
       // Create new blank entry.
-      newArtifactMetas.push(createBlankArtifact());
+      newArtifactMetas.push({
+        title: '',
+        subtitle: '',
+        year: Year.None,
+        quarter: Quarter.None,
+        text: '',
+        images: [],
+        links: [],
+        embeds: [],
+      });
 
       // Update state to point to new entry.
       return {
@@ -72,6 +80,47 @@ const useStateStoreBase = create<StoreModel>()((set, get) => ({
       // Update state.
       return {
         currentArtifactIndex: -1,
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
+
+  createNewImage: () => {
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of artifact metas
+      const newArtifactMetas = [...artifactMetas];
+
+      // Create new blank image.
+      newArtifactMetas[currentArtifactIndex].images.push({
+        name: '',
+        description: '',
+        width: 0,
+        height: 0,
+        src: '',
+        thumbnailSrc: '',
+      });
+
+      // Update state.
+      return {
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
+
+  deleteImage: (index: number) => {
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of artifact metas
+      const newArtifactMetas = [...artifactMetas];
+
+      // Remove image at index.
+      newArtifactMetas[currentArtifactIndex].images.splice(index, 1);
+
+      // Update state.
+      return {
         artifactMetas: newArtifactMetas,
       };
     });
@@ -190,6 +239,33 @@ const useStateStoreBase = create<StoreModel>()((set, get) => ({
         ...newArtifactMetas[currentArtifactIndex],
         text,
       };
+
+      // Update state.
+      return {
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
+
+  setImageSrc: (index: number, src: string) => {
+    // Search for image src in all asset paths.
+    const allAssetPaths = get().allAssetPaths;
+    const assetPath = allAssetPaths.find((path) => path.endsWith(src));
+
+    // Shortcut exit if not found.
+    if (!assetPath) {
+      return;
+    }
+
+    // Update state.
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of artifact metas
+      const newArtifactMetas = [...artifactMetas];
+
+      // Update src of image at index of current artifact.
+      newArtifactMetas[currentArtifactIndex].images[index].src = assetPath;
 
       // Update state.
       return {
