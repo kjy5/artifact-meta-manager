@@ -7,6 +7,11 @@ interface StoreState {
   currentArtifactIndex: number;
 
   /**
+   * The root path of the current artifact's images.
+   */
+  currentArtifactImagesRoot: string;
+
+  /**
    * The array of artifact metadata.
    */
   artifactMetas: ArtifactMetas;
@@ -20,6 +25,12 @@ interface StoreActions {
    * @param currentArtifactIndex The index of the current artifact.
    */
   setCurrentArtifactIndex: (currentArtifactIndex: number) => void;
+
+  /**
+   * Sets the root path of the current artifact's images.
+   * @param currentArtifactImagesRoot The root path of the current artifact's images.
+   */
+  setCurrentArtifactImagesRoot: (currentArtifactImagesRoot: string) => void;
 
   // Artifact actions
 

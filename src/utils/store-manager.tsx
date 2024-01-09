@@ -6,6 +6,7 @@ import { ArtifactMetas, createBlankArtifact } from '../models/artifact-meta-mode
 const useStateStoreBase = create<StoreModel>()((set, get) => ({
   // Default default state.
   currentArtifactIndex: -1,
+  currentArtifactImagesRoot: '',
   isCreatingNewArtifact: false,
   artifactMetas: [],
 
@@ -33,6 +34,10 @@ const useStateStoreBase = create<StoreModel>()((set, get) => ({
 
   setCurrentArtifactIndex: (currentArtifactIndex: number) => {
     set({ currentArtifactIndex });
+  },
+
+  setCurrentArtifactImagesRoot: (currentArtifactImagesRoot: string) => {
+    set({ currentArtifactImagesRoot });
   },
 
   createNewArtifact: () => {
