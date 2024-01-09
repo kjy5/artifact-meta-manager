@@ -236,7 +236,7 @@ function Images(): ReactElement {
           </TableHead>
           <TableBody>
             {artifactMetas[currentArtifactIndex].images.map((image, index) => (
-              <ImageRow key={`image-${index}`} index={index} image={image} />
+              <ImageRow key={image.src} index={index} image={image} />
             ))}
           </TableBody>
         </Table>
