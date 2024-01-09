@@ -7,6 +7,11 @@ interface StoreState {
   currentArtifactIndex: number;
 
   /**
+   * List of all asset paths from the `public` directory.
+   */
+  allAssetPaths: string[];
+
+  /**
    * The array of artifact metadata.
    */
   artifactMetas: ArtifactMetas;
@@ -20,6 +25,12 @@ interface StoreActions {
    * @param currentArtifactIndex The index of the current artifact.
    */
   setCurrentArtifactIndex: (currentArtifactIndex: number) => void;
+
+  /**
+   * Sets the list of all asset paths.
+   * @param allAssetPaths The list of all asset paths.
+   */
+  setAllAssetPaths: (allAssetPaths: string[]) => void;
 
   // Artifact actions
 
@@ -43,6 +54,17 @@ interface StoreActions {
    * Deletes the current artifact.
    */
   deleteCurrentArtifact: () => void;
+
+  /**
+   * Creates a new blank image in the current artifact.
+   */
+  createNewImage: () => void;
+
+  /**
+   * Deletes an image from the current artifact.
+   * @param index The index of the image to delete.
+   */
+  deleteImage: (index: number) => void;
 
   // Artifact meta setters.
 
@@ -81,6 +103,48 @@ interface StoreActions {
    * @param text The text to set.
    */
   setArtifactText: (text: string) => void;
+
+  /**
+   * Sets the image src metadata of the current artifact.
+   * @param index The index of the image in the current artifact.
+   * @param src The src to set.
+   */
+  setImageSrc: (index: number, src: string) => void;
+
+  /**
+   * Sets the image thumbnail src metadata of the current artifact.
+   * @param index The index of the image in the current artifact.
+   * @param src The src to set.
+   */
+  setImageThumbnailSrc: (index: number, src: string) => void;
+
+  /**
+   * Sets the image title metadata of the current artifact.
+   * @param index The index of the image in the current artifact.
+   * @param title The title to set.
+   */
+  setImageTitle: (index: number, title: string) => void;
+
+  /**
+   * Sets the image description metadata of the current artifact.
+   * @param index The index of the image in the current artifact.
+   * @param description The description to set.
+   */
+  setImageDescription: (index: number, description: string) => void;
+
+  /**
+   * Sets the image width metadata of the current artifact.
+   * @param index The index of the image in the current artifact.
+   * @param width The width to set.
+   */
+  setImageWidth: (index: number, width: number) => void;
+
+  /**
+   * Sets the image height metadata of the current artifact.
+   * @param index The index of the image in the current artifact.
+   * @param height The height to set.
+   */
+  setImageHeight: (index: number, height: number) => void;
 }
 
 type StoreModel = StoreState & StoreActions;

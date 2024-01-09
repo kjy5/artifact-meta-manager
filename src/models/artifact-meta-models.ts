@@ -14,8 +14,8 @@ enum Quarter {
   Summer,
 }
 
-interface Image {
-  name: string;
+interface ImageMeta {
+  title: string;
   description: string;
   width: number;
   height: number;
@@ -23,7 +23,7 @@ interface Image {
   thumbnailSrc: string;
 }
 
-interface Link {
+interface LinkMeta {
   url: string;
   title: string;
   description: string;
@@ -32,37 +32,21 @@ interface Link {
   domain: string;
 }
 
-interface Artifact {
+interface ArtifactMeta {
   title: string;
   subtitle: string;
   year: Year;
   quarter: Quarter;
   text: string;
-  images: Image[];
-  links: Link[];
+  images: ImageMeta[];
+  links: LinkMeta[];
   embeds: string[];
 }
 
 /**
- * Factory function for creating a blank artifact.
- * @returns A blank artifact with non-null fields.
- */
-const createBlankArtifact = (): Artifact => ({
-  title: '',
-  subtitle: '',
-  year: Year.None,
-  quarter: Quarter.None,
-  text: '',
-  images: [],
-  links: [],
-  embeds: [],
-});
-
-/**
  * A map of artifact names to their metadata.
  */
-type ArtifactMetas = Artifact[];
+type ArtifactMetas = ArtifactMeta[];
 
 export { Quarter, Year };
-export type { Artifact, ArtifactMetas, Image, Link };
-export { createBlankArtifact };
+export type { ArtifactMeta, ArtifactMetas, ImageMeta, LinkMeta };
