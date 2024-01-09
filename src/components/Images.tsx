@@ -11,7 +11,7 @@ import {
     TextField,
     Typography,
 } from '@mui/material';
-import {Add, AddPhotoAlternate, ArrowDropDown, ArrowDropUp, Delete, Folder} from '@mui/icons-material';
+import {Add, AddPhotoAlternate, ArrowDropDown, ArrowDropUp, Delete} from '@mui/icons-material';
 import VisuallyHiddenInput from './VisuallyHiddenInput.tsx';
 import {ReactElement} from 'react';
 
@@ -90,21 +90,9 @@ function ImageRow(): ReactElement {
  * @constructor
  */
 function Images(): ReactElement {
-  // const setCurrentArtifactImagesRoot = useStateStore.use.setCurrentArtifactImagesRoot();
   return (
     <>
       <Typography variant={'h2'}>Images</Typography>
-
-      <Button
-        aria-label={'pick image directory'}
-        startIcon={<Folder />}
-        // onClick={useCallback(async () => {
-        //   const directoryHandle: FileSystemDirectoryHandle = await window.showDirectoryPicker();
-        //   setCurrentArtifactImagesRoot(directoryHandle.name);
-        // }, [setCurrentArtifactImagesRoot])}
-      >
-        Select Base folder
-      </Button>
 
       <TableContainer>
         <Table>

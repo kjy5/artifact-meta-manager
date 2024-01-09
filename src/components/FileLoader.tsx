@@ -1,7 +1,7 @@
-import { Button, ButtonGroup } from '@mui/material';
-import { FileDownload, UploadFile } from '@mui/icons-material';
+import {Button, ButtonGroup} from '@mui/material';
+import {Check, FileDownload, Folder, UploadFile} from '@mui/icons-material';
 import VisuallyHiddenInput from './VisuallyHiddenInput.tsx';
-import { ChangeEvent, ReactElement, useCallback } from 'react';
+import {ChangeEvent, ReactElement, useCallback} from 'react';
 import useStateStore from '../utils/store-manager.tsx';
 
 /**
@@ -10,12 +10,18 @@ import useStateStore from '../utils/store-manager.tsx';
  */
 function FileLoader(): ReactElement {
   const artifactMetas = useStateStore.use.artifactMetas();
+  const allAssetPaths = useStateStore.use.allAssetPaths();
   const uploadArtifactMetas = useStateStore.use.uploadArtifactMetas();
+  const setAllAssetPaths = useStateStore.use.setAllAssetPaths();
   const downloadArtifactMetas = useStateStore.use.downloadArtifactMetas();
 
   return (
     <ButtonGroup>
-      <Button aria-label={'upload meta file'} component={'label'} startIcon={<UploadFile />}>
+      <Button
+        aria-label={'upload meta file'}
+        component={'label'}
+        startIcon={artifactMetas.length > 0 ? <Check /> : <UploadFile />}
+      >
         Upload Meta File
         <VisuallyHiddenInput
           type={'file'}
@@ -30,6 +36,34 @@ function FileLoader(): ReactElement {
           )}
         />
       </Button>
+
+      <Button
+        aria-label={'pick public directory'}
+        component={'label'}
+        startIcon={allAssetPaths.length > 0 ? <Check /> : <Folder />}
+      >
+        Select Public folder
+        <VisuallyHiddenInput
+          type={'file'}
+          webkitdirectory={''}
+          directory={''}
+          multiple
+          onChange={useCallback(
+            (event: ChangeEvent<HTMLInputElement>) => {
+              if (event.target.files) {
+                // Extract paths of all files and remove `public` directory from the path.
+                setAllAssetPaths(
+                  [...event.target.files].map((file) =>
+                    file.webkitRelativePath.substring(file.webkitRelativePath.indexOf('/')),
+                  ),
+                );
+              }
+            },
+            [setAllAssetPaths],
+          )}
+        />
+      </Button>
+
       <Button
         aria-label={'download meta file'}
         startIcon={<FileDownload />}

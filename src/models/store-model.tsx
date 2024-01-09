@@ -7,9 +7,9 @@ interface StoreState {
   currentArtifactIndex: number;
 
   /**
-   * The root path of the current artifact's images.
+   * List of all asset paths from the `public` directory.
    */
-  currentArtifactImagesRoot: string;
+  allAssetPaths: string[];
 
   /**
    * The array of artifact metadata.
@@ -27,10 +27,10 @@ interface StoreActions {
   setCurrentArtifactIndex: (currentArtifactIndex: number) => void;
 
   /**
-   * Sets the root path of the current artifact's images.
-   * @param currentArtifactImagesRoot The root path of the current artifact's images.
+   * Sets the list of all asset paths.
+   * @param allAssetPaths The list of all asset paths.
    */
-  setCurrentArtifactImagesRoot: (currentArtifactImagesRoot: string) => void;
+  setAllAssetPaths: (allAssetPaths: string[]) => void;
 
   // Artifact actions
 
