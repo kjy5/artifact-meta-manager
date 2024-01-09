@@ -43,12 +43,15 @@ function HeaderRow(): ReactElement {
  * Row for a single image.
  * @constructor
  */
-function ImageRow({index, image}: { index: number; image: ImageMeta }): ReactElement {
-    const allAssetPaths = useStateStore.use.allAssetPaths();
+function ImageRow({ index, image }: { index: number; image: ImageMeta }): ReactElement {
+  const allAssetPaths = useStateStore.use.allAssetPaths();
   const setImageSrc = useStateStore.use.setImageSrc();
   const setImageThumbnailSrc = useStateStore.use.setImageThumbnailSrc();
+  const setImageTitle = useStateStore.use.setImageTitle();
+  const setImageDescription = useStateStore.use.setImageDescription();
   const setImageWidth = useStateStore.use.setImageWidth();
   const setImageHeight = useStateStore.use.setImageHeight();
+  const deleteImage = useStateStore.use.deleteImage();
 
   return (
     <TableRow>
@@ -146,11 +149,31 @@ function ImageRow({index, image}: { index: number; image: ImageMeta }): ReactEle
       </TableCell>
 
       <TableCell>
-        <TextField placeholder={'Title'} multiline />
+        <TextField
+          placeholder={'Title'}
+          multiline
+          value={image.title}
+          onChange={useCallback(
+            (event: ChangeEvent<HTMLInputElement>) => {
+              setImageTitle(index, event.target.value);
+            },
+            [index, setImageTitle],
+          )}
+        />
       </TableCell>
 
       <TableCell>
-        <TextField placeholder={'Description'} multiline />
+        <TextField
+          placeholder={'Description'}
+          multiline
+          value={image.description}
+          onChange={useCallback(
+            (event: ChangeEvent<HTMLInputElement>) => {
+              setImageDescription(index, event.target.value);
+            },
+            [index, setImageDescription],
+          )}
+        />
       </TableCell>
 
       <TableCell>
@@ -180,7 +203,12 @@ function ImageRow({index, image}: { index: number; image: ImageMeta }): ReactEle
       </TableCell>
 
       <TableCell>
-        <IconButton aria-label={'remove'}>
+        <IconButton
+          aria-label={'remove'}
+          onClick={useCallback(() => {
+            deleteImage(index);
+          }, [index, deleteImage])}
+        >
           <Delete />
         </IconButton>
       </TableCell>

@@ -94,7 +94,7 @@ const useStateStoreBase = create<StoreModel>()((set, get) => ({
 
       // Create new blank image.
       newArtifactMetas[currentArtifactIndex].images.push({
-        name: '',
+        title: '',
         description: '',
         width: 0,
         height: 0,
@@ -158,7 +158,7 @@ const useStateStoreBase = create<StoreModel>()((set, get) => ({
       const newArtifactMetas = [...artifactMetas];
 
       // Update title of artifact at current index.
-      newArtifactMetas[currentArtifactIndex] = { ...newArtifactMetas[currentArtifactIndex], title };
+      newArtifactMetas[currentArtifactIndex].title = title;
 
       // Update state.
       return {
@@ -175,10 +175,7 @@ const useStateStoreBase = create<StoreModel>()((set, get) => ({
       const newArtifactMetas = [...artifactMetas];
 
       // Update subtitle of artifact at current index.
-      newArtifactMetas[currentArtifactIndex] = {
-        ...newArtifactMetas[currentArtifactIndex],
-        subtitle,
-      };
+      newArtifactMetas[currentArtifactIndex].subtitle = subtitle;
 
       // Update state.
       return {
@@ -195,10 +192,7 @@ const useStateStoreBase = create<StoreModel>()((set, get) => ({
       const newArtifactMetas = [...artifactMetas];
 
       // Update year of artifact at current index.
-      newArtifactMetas[currentArtifactIndex] = {
-        ...newArtifactMetas[currentArtifactIndex],
-        year,
-      };
+      newArtifactMetas[currentArtifactIndex].year = year;
 
       // Update state.
       return {
@@ -215,10 +209,7 @@ const useStateStoreBase = create<StoreModel>()((set, get) => ({
       const newArtifactMetas = [...artifactMetas];
 
       // Update quarter of artifact at current index.
-      newArtifactMetas[currentArtifactIndex] = {
-        ...newArtifactMetas[currentArtifactIndex],
-        quarter,
-      };
+      newArtifactMetas[currentArtifactIndex].quarter = quarter;
 
       // Update state.
       return {
@@ -235,10 +226,7 @@ const useStateStoreBase = create<StoreModel>()((set, get) => ({
       const newArtifactMetas = [...artifactMetas];
 
       // Update text of artifact at current index.
-      newArtifactMetas[currentArtifactIndex] = {
-        ...newArtifactMetas[currentArtifactIndex],
-        text,
-      };
+      newArtifactMetas[currentArtifactIndex].text = text;
 
       // Update state.
       return {
@@ -293,6 +281,40 @@ const useStateStoreBase = create<StoreModel>()((set, get) => ({
 
       // Update thumbnail src of image at index of current artifact.
       newArtifactMetas[currentArtifactIndex].images[index].thumbnailSrc = assetPath;
+
+      // Update state.
+      return {
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
+
+  setImageTitle: (index: number, title: string) => {
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of artifact metas
+      const newArtifactMetas = [...artifactMetas];
+
+      // Update title of image at index of current artifact.
+      newArtifactMetas[currentArtifactIndex].images[index].title = title;
+
+      // Update state.
+      return {
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
+
+  setImageDescription: (index: number, description: string) => {
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of artifact metas
+      const newArtifactMetas = [...artifactMetas];
+
+      // Update description of image at index of current artifact.
+      newArtifactMetas[currentArtifactIndex].images[index].description = description;
 
       // Update state.
       return {

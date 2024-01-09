@@ -15,7 +15,7 @@ enum Quarter {
 }
 
 interface ImageMeta {
-  name: string;
+  title: string;
   description: string;
   width: number;
   height: number;

@@ -119,16 +119,30 @@ interface StoreActions {
   setImageThumbnailSrc: (index: number, src: string) => void;
 
   /**
+   * Sets the image title metadata of the current artifact.
+   * @param index The index of the image in the current artifact.
+   * @param title The title to set.
+   */
+  setImageTitle: (index: number, title: string) => void;
+
+  /**
+   * Sets the image description metadata of the current artifact.
+   * @param index The index of the image in the current artifact.
+   * @param description The description to set.
+   */
+  setImageDescription: (index: number, description: string) => void;
+
+  /**
    * Sets the image width metadata of the current artifact.
-   * @param index
-   * @param width
+   * @param index The index of the image in the current artifact.
+   * @param width The width to set.
    */
   setImageWidth: (index: number, width: number) => void;
 
   /**
    * Sets the image height metadata of the current artifact.
-   * @param index
-   * @param height
+   * @param index The index of the image in the current artifact.
+   * @param height The height to set.
    */
   setImageHeight: (index: number, height: number) => void;
 }
