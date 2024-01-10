@@ -16,6 +16,9 @@ on:
         default: false
         type: boolean
 
+env:
+  VITE_JSONLINK_KEY: ${{ secrets.VITE_JSONLINK_KEY }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
