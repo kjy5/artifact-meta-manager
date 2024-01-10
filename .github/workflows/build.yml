@@ -16,8 +16,6 @@ on:
         default: false
         type: boolean
 
-env:
-  VITE_JSONLINK_KEY: ${{ secrets.VITE_JSONLINK_KEY }}
 
 jobs:
   build:
@@ -40,7 +38,11 @@ jobs:
 
       # Build
       - name: 🔨 Build
-        run: npm run build
+        run: |
+          echo $VITE_JSONLINK_KEY
+          npm run build
+        env:
+          VITE_JSONLINK_KEY: ${{ secrets.VITE_JSONLINK_KEY }}
 
       # Upload artifact if requested
       - name: ⬆️ Upload artifact
