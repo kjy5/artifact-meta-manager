@@ -66,6 +66,17 @@ interface StoreActions {
    */
   deleteImage: (index: number) => void;
 
+  /**
+   * Creates a new blank link in the current artifact.
+   */
+  createNewLink: () => void;
+
+  /**
+   * Deletes a link from the current artifact.
+   * @param index The index of the link to delete.
+   */
+  deleteLink: (index: number) => void;
+
   // Artifact meta setters.
 
   /**
@@ -145,6 +156,48 @@ interface StoreActions {
    * @param height The height to set.
    */
   setImageHeight: (index: number, height: number) => void;
+
+  /**
+   * Sets the link url metadata of the current artifact.
+   * @param index The index of the link in the current artifact.
+   * @param url The url to set.
+   */
+  setLinkUrl: (index: number, url: string) => void;
+
+  /**
+   * Sets the link title metadata of the current artifact.
+   * @param index The index of the link in the current artifact.
+   * @param title The title to set.
+   */
+  setLinkTitle: (index: number, title: string) => void;
+
+  /**
+   * Sets the link description metadata of the current artifact.
+   * @param index The index of the link in the current artifact.
+   * @param description The description to set.
+   */
+  setLinkDescription: (index: number, description: string) => void;
+
+  /**
+   * Sets the link image src metadata of the current artifact.
+   * @param index The index of the link in the current artifact.
+   * @param src The src to set.
+   */
+  setLinkImageSrc: (index: number, src: string) => void;
+
+  /**
+   * Sets the link favicon src metadata of the current artifact.
+   * @param index The index of the link in the current artifact.
+   * @param src The src to set.
+   */
+  setLinkFaviconSrc: (index: number, src: string) => void;
+
+  /**
+   * Sets the link domain metadata of the current artifact.
+   * @param index The index of the link in the current artifact.
+   * @param domain The domain to set.
+   */
+  setLinkDomain: (index: number, domain: string) => void;
 }
 
 type StoreModel = StoreState & StoreActions;
