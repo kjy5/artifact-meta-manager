@@ -1,20 +1,20 @@
 import {
-    Button,
-    ButtonGroup,
-    IconButton,
-    Stack,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    TextField,
-    Typography,
+  Button,
+  ButtonGroup,
+  IconButton,
+  Stack,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextField,
+  Typography,
 } from '@mui/material';
-import {Add, ArrowDropDown, ArrowDropUp, Check, Delete, FindInPage} from '@mui/icons-material';
-import {ChangeEvent, ReactElement, useCallback} from 'react';
-import {LinkExtract, LinkMeta} from '../models/artifact-meta-models.ts';
+import { Add, ArrowDropDown, ArrowDropUp, Check, Delete, FindInPage } from '@mui/icons-material';
+import { ChangeEvent, ReactElement, useCallback } from 'react';
+import { LinkExtract, LinkMeta } from '../models/artifact-meta-models.ts';
 import useStateStore from '../utils/store-manager.tsx';
 
 /**
