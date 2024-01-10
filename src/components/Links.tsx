@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import {Add, ArrowDropDown, ArrowDropUp, Check, Delete, FindInPage} from '@mui/icons-material';
 import {ChangeEvent, ReactElement, useCallback} from 'react';
-import {LinkMeta} from '../models/artifact-meta-models.ts';
+import {LinkExtract, LinkMeta} from '../models/artifact-meta-models.ts';
 import useStateStore from '../utils/store-manager.tsx';
 
 /**
@@ -44,6 +44,13 @@ function HeaderRow(): ReactElement {
  */
 function LinkRow({ index, link }: { index: number; link: LinkMeta }): ReactElement {
   const setLinkUrl = useStateStore.use.setLinkUrl();
+  const setLinkTitle = useStateStore.use.setLinkTitle();
+  const setLinkDescription = useStateStore.use.setLinkDescription();
+  const setLinkImageSrc = useStateStore.use.setLinkImageSrc();
+  const setLinkFaviconSrc = useStateStore.use.setLinkFaviconSrc();
+  const setLinkDomain = useStateStore.use.setLinkDomain();
+  const deleteLink = useStateStore.use.deleteLink();
+
   return (
     <TableRow>
       {/* Placement buttons */}
@@ -95,15 +102,19 @@ function LinkRow({ index, link }: { index: number; link: LinkMeta }): ReactEleme
                   if (!response.ok) {
                     throw new Error(`Error: ${response.status} - ${response.statusText}`);
                   }
-                  return response.json();
+                  return response.json() as Promise<LinkExtract>;
                 })
                 .then((data) => {
-                  console.log(data); // Process the JSON response
+                  setLinkTitle(index, data.title);
+                  setLinkDescription(index, data.description);
+                  setLinkImageSrc(index, data.images[0]);
+                  setLinkFaviconSrc(index, data.favicon);
+                  setLinkDomain(index, data.domain);
                 })
                 .catch((error) => {
                   console.error('An error occurred:', error);
                 });
-            }, [link.url])}
+            }, [link.url, index, setLinkTitle, setLinkDescription, setLinkImageSrc, setLinkFaviconSrc, setLinkDomain])}
           >
             Extract Info
           </Button>
@@ -112,32 +123,84 @@ function LinkRow({ index, link }: { index: number; link: LinkMeta }): ReactEleme
 
       {/* Title */}
       <TableCell>
-        <TextField placeholder={'Title'} multiline />
+        <TextField
+          placeholder={'Title'}
+          multiline
+          value={link.title}
+          onChange={useCallback(
+            (event: ChangeEvent<HTMLInputElement>) => {
+              setLinkTitle(index, event.target.value);
+            },
+            [index, setLinkTitle],
+          )}
+        />
       </TableCell>
 
       {/* Description */}
       <TableCell>
-        <TextField placeholder={'Description'} multiline />
+        <TextField
+          placeholder={'Description'}
+          multiline
+          value={link.description}
+          onChange={useCallback(
+            (event: ChangeEvent<HTMLInputElement>) => {
+              setLinkDescription(index, event.target.value);
+            },
+            [index, setLinkDescription],
+          )}
+        />
       </TableCell>
 
       {/* Image URL */}
       <TableCell>
-        <TextField placeholder={'Image URL'} />
+        <TextField
+          placeholder={'Image URL'}
+          value={link.imageSrc}
+          onChange={useCallback(
+            (event: ChangeEvent<HTMLInputElement>) => {
+              setLinkImageSrc(index, event.target.value);
+            },
+            [index, setLinkImageSrc],
+          )}
+        />
       </TableCell>
 
       {/* Favicon URL */}
       <TableCell>
-        <TextField placeholder={'Favicon URL'} />
+        <TextField
+          placeholder={'Favicon URL'}
+          value={link.faviconSrc}
+          onChange={useCallback(
+            (event: ChangeEvent<HTMLInputElement>) => {
+              setLinkFaviconSrc(index, event.target.value);
+            },
+            [index, setLinkFaviconSrc],
+          )}
+        />
       </TableCell>
 
       {/* Domain */}
       <TableCell>
-        <TextField placeholder={'Domain'} />
+        <TextField
+          placeholder={'Domain'}
+          value={link.domain}
+          onChange={useCallback(
+            (event: ChangeEvent<HTMLInputElement>) => {
+              setLinkDomain(index, event.target.value);
+            },
+            [index, setLinkDomain],
+          )}
+        />
       </TableCell>
 
       {/* Remove */}
       <TableCell>
-        <IconButton aria-label={'remove'}>
+        <IconButton
+          aria-label={'remove'}
+          onChange={useCallback(() => {
+            deleteLink(index);
+          }, [index, deleteLink])}
+        >
           <Delete />
         </IconButton>
       </TableCell>

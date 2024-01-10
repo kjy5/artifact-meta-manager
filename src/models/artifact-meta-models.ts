@@ -32,6 +32,18 @@ interface LinkMeta {
   domain: string;
 }
 
+interface LinkExtract {
+  title: string;
+  description: string;
+  images: string[];
+  sitename: string;
+  favicon: string;
+  duration: number;
+  domain: string;
+  url: string;
+  source: string;
+}
+
 interface ArtifactMeta {
   title: string;
   subtitle: string;
@@ -49,4 +61,4 @@ interface ArtifactMeta {
 type ArtifactMetas = ArtifactMeta[];
 
 export { Quarter, Year };
-export type { ArtifactMeta, ArtifactMetas, ImageMeta, LinkMeta };
+export type { ArtifactMeta, ArtifactMetas, ImageMeta, LinkMeta, LinkExtract };
