@@ -15,10 +15,19 @@ on:
         required: true
         default: false
         type: boolean
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        type: string
+    secrets:
+      VITE_JSONLINK_KEY:
+        description: 'JsonLink API key'
+        required: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
 
     steps:
       - name: 🛎 Checkout
@@ -37,9 +46,7 @@ jobs:
 
       # Build
       - name: 🔨 Build
-        run: |
-          echo $VITE_JSONLINK_KEY
-          npm run build
+        run: npm run build
         env:
           VITE_JSONLINK_KEY: ${{ secrets.VITE_JSONLINK_KEY }}
 
