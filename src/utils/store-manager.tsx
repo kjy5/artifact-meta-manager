@@ -126,6 +126,47 @@ const useStateStoreBase = create<StoreModel>()((set, get) => ({
     });
   },
 
+  createNewLink: () => {
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of artifact metas.
+      const newArtifactMetas = [...artifactMetas];
+
+      // Create new blank link.
+      newArtifactMetas[currentArtifactIndex].links.push({
+        url: '',
+        title: '',
+        description: '',
+        imageSrc: '',
+        faviconSrc: '',
+        domain: '',
+      });
+
+      // Update state.
+      return {
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
+
+  deleteLink: (index: number) => {
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of artifact metas.
+      const newArtifactMetas = [...artifactMetas];
+
+      // Remove link at index.
+      newArtifactMetas[currentArtifactIndex].links.splice(index, 1);
+
+      // Update state.
+      return {
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
+
   setArtifactIndex: (index: number) => {
     set((state) => {
       const { currentArtifactIndex, artifactMetas } = state;
@@ -349,6 +390,108 @@ const useStateStoreBase = create<StoreModel>()((set, get) => ({
 
       // Update height of image at index of current artifact.
       newArtifactMetas[currentArtifactIndex].images[index].height = height;
+
+      // Update state.
+      return {
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
+
+  setLinkUrl: (index: number, url: string) => {
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of artifact metas
+      const newArtifactMetas = [...artifactMetas];
+
+      // Update url of link at index of current artifact.
+      newArtifactMetas[currentArtifactIndex].links[index].url = url;
+
+      // Update state.
+      return {
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
+
+  setLinkTitle: (index: number, title: string) => {
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of artifact metas
+      const newArtifactMetas = [...artifactMetas];
+
+      // Update title of link at index of current artifact.
+      newArtifactMetas[currentArtifactIndex].links[index].title = title;
+
+      // Update state.
+      return {
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
+
+  setLinkDescription: (index: number, description: string) => {
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of artifact metas
+      const newArtifactMetas = [...artifactMetas];
+
+      // Update description of link at index of current artifact.
+      newArtifactMetas[currentArtifactIndex].links[index].description = description;
+
+      // Update state.
+      return {
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
+
+  setLinkImageSrc: (index: number, src: string) => {
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of artifact metas
+      const newArtifactMetas = [...artifactMetas];
+
+      // Update image src of link at index of current artifact.
+      newArtifactMetas[currentArtifactIndex].links[index].imageSrc = src;
+
+      // Update state.
+      return {
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
+
+  setLinkFaviconSrc: (index: number, src: string) => {
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of artifact metas
+      const newArtifactMetas = [...artifactMetas];
+
+      // Update favicon src of link at index of current artifact.
+      newArtifactMetas[currentArtifactIndex].links[index].faviconSrc = src;
+
+      // Update state.
+      return {
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
+
+  setLinkDomain: (index: number, domain: string) => {
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of artifact metas
+      const newArtifactMetas = [...artifactMetas];
+
+      // Update domain of link at index of current artifact.
+      newArtifactMetas[currentArtifactIndex].links[index].domain = domain;
 
       // Update state.
       return {

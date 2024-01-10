@@ -81,18 +81,18 @@ function ImageRow({ index, image }: { index: number; image: ImageMeta }): ReactE
               accept={'image/*'}
               onChange={useCallback(
                 (event: ChangeEvent<HTMLInputElement>) => {
-                  if (event.target.files) {
-                    // Update image src.
-                    setImageSrc(index, event.target.files[0].name);
-
-                    // Pull width and height from image.
-                    const image = new Image();
-                    image.src = URL.createObjectURL(event.target.files[0]);
-                    image.onload = () => {
-                      setImageWidth(index, image.width);
-                      setImageHeight(index, image.height);
-                    };
+                  // Exit early if no files were selected
+                  if (!event.target.files) {
+                    return;
                   }
+
+                  setImageSrc(index, event.target.files[0].name);
+                  const image = new Image();
+                  image.src = URL.createObjectURL(event.target.files[0]);
+                  image.onload = () => {
+                    setImageWidth(index, image.width);
+                    setImageHeight(index, image.height);
+                  };
                 },
                 [index, setImageSrc, setImageWidth, setImageHeight],
               )}
@@ -126,9 +126,11 @@ function ImageRow({ index, image }: { index: number; image: ImageMeta }): ReactE
               accept={'image/*'}
               onChange={useCallback(
                 (event: ChangeEvent<HTMLInputElement>) => {
-                  if (event.target.files) {
-                    setImageThumbnailSrc(index, event.target.files[0].name);
+                  // Exit early if no files were selected
+                  if (!event.target.files) {
+                    return;
                   }
+                  setImageThumbnailSrc(index, event.target.files[0].name);
                 },
                 [index, setImageThumbnailSrc],
               )}
