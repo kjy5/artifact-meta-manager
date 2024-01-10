@@ -197,7 +197,7 @@ function LinkRow({ index, link }: { index: number; link: LinkMeta }): ReactEleme
       <TableCell>
         <IconButton
           aria-label={'remove'}
-          onChange={useCallback(() => {
+          onClick={useCallback(() => {
             deleteLink(index);
           }, [index, deleteLink])}
         >
