@@ -27,6 +27,9 @@ jobs:
     uses: ./.github/workflows/build.yml
     with:
       upload-artifact: true
+      environment: github-pages
+    secrets:
+      VITE_JSONLINK_KEY: ${{ secrets.VITE_JSONLINK_KEY }}
 
   # Deploy the website after building
   deploy:
