@@ -1,18 +1,18 @@
 import {
-    Button,
-    ButtonGroup,
-    IconButton,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    TextField,
-    Typography,
+  Button,
+  ButtonGroup,
+  IconButton,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextField,
+  Typography,
 } from '@mui/material';
-import {Add, AddPhotoAlternate, ArrowDropDown, ArrowDropUp, Check, Delete} from '@mui/icons-material';
-import {ChangeEvent, ReactElement, useCallback} from 'react';
+import { Add, AddPhotoAlternate, ArrowDropDown, ArrowDropUp, Check, Delete } from '@mui/icons-material';
+import { ChangeEvent, ReactElement, useCallback } from 'react';
 import useStateStore from '../utils/store-manager.tsx';
 import VisuallyHiddenInput from './VisuallyHiddenInput.tsx';
 
