@@ -11,8 +11,10 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { Add, ArrowDropDown, ArrowDropUp } from '@mui/icons-material';
-import { ReactElement } from 'react';
+import { Add, AddPhotoAlternate, ArrowDropDown, ArrowDropUp, Check, Delete } from '@mui/icons-material';
+import { ChangeEvent, ReactElement, useCallback } from 'react';
+import useStateStore from '../utils/store-manager.tsx';
+import VisuallyHiddenInput from './VisuallyHiddenInput.tsx';
 
 /**
  * Header row for embeds table.
@@ -24,7 +26,10 @@ function HeaderRow(): ReactElement {
       {/* Placement buttons */}
       <TableCell />
 
+      <TableCell>File Upload</TableCell>
+
       <TableCell>URL</TableCell>
+      <TableCell>Remove</TableCell>
     </TableRow>
   );
 }
@@ -33,7 +38,11 @@ function HeaderRow(): ReactElement {
  * Row for a single embed.
  * @constructor
  */
-function EmbedRow(): ReactElement {
+function EmbedRow({ index, embed }: { index: number; embed: string }): ReactElement {
+  const setEmbed = useStateStore.use.setEmbed();
+  const deleteEmbed = useStateStore.use.deleteEmbed();
+  const allAssetPaths = useStateStore.use.allAssetPaths();
+
   return (
     <TableRow>
       {/* Placement buttons */}
@@ -48,9 +57,56 @@ function EmbedRow(): ReactElement {
         </ButtonGroup>
       </TableCell>
 
+      {/* File upload */}
+      <TableCell>
+        <Button
+          aria-label={'upload embedded file'}
+          component={'label'}
+          startIcon={embed.length > 0 ? <Check /> : <AddPhotoAlternate />}
+          disabled={allAssetPaths.length === 0}
+        >
+          Upload
+          <VisuallyHiddenInput
+            type={'file'}
+            accept={'application/pdf'}
+            onChange={useCallback(
+              (event: ChangeEvent<HTMLInputElement>) => {
+                // Exit early if no files were selected
+                if (!event.target.files) {
+                  return;
+                }
+                setEmbed(index, event.target.files[0].name);
+              },
+              [index, setEmbed],
+            )}
+          />
+        </Button>
+      </TableCell>
+
       {/* URL */}
       <TableCell>
-        <TextField placeholder={'URL'} fullWidth />
+        <TextField
+          placeholder={'URL'}
+          fullWidth
+          value={embed}
+          onChange={useCallback(
+            (event: ChangeEvent<HTMLInputElement>) => {
+              setEmbed(index, event.target.value);
+            },
+            [index, setEmbed],
+          )}
+        />
+      </TableCell>
+
+      <TableCell>
+        <IconButton
+          aria-label={'remove'}
+          onClick={useCallback(() => {
+            deleteEmbed(index);
+          }, [index, deleteEmbed])}
+        >
+          <Delete />
+        </IconButton>
       </TableCell>
     </TableRow>
   );
@@ -61,6 +117,10 @@ function EmbedRow(): ReactElement {
  * @constructor
  */
 function Embeds(): ReactElement {
+  const currentArtifactIndex = useStateStore.use.currentArtifactIndex();
+  const artifactMetas = useStateStore.use.artifactMetas();
+  const createNewEmbed = useStateStore.use.createNewEmbed();
+
   return (
     <>
       <Typography variant={'h2'}>Embeds</Typography>
@@ -70,12 +130,14 @@ function Embeds(): ReactElement {
             <HeaderRow />
           </TableHead>
           <TableBody>
-            <EmbedRow />
+            {artifactMetas[currentArtifactIndex].embeds.map((embed, index) => (
+              <EmbedRow key={embed} index={index} embed={embed} />
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
 
-      <Button aria-label={'add embed'} startIcon={<Add />}>
+      <Button aria-label={'add embed'} startIcon={<Add />} onClick={createNewEmbed}>
         Add Embed
       </Button>
     </>

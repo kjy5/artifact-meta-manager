@@ -167,6 +167,40 @@ const useStateStoreBase = create<StoreModel>()((set, get) => ({
     });
   },
 
+  createNewEmbed: () => {
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of artifact metas.
+      const newArtifactMetas = [...artifactMetas];
+
+      // Create new blank embed.
+      newArtifactMetas[currentArtifactIndex].embeds.push('');
+
+      // Update state.
+      return {
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
+
+  deleteEmbed: (index: number) => {
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of artifact metas.
+      const newArtifactMetas = [...artifactMetas];
+
+      // Remove embed at index.
+      newArtifactMetas[currentArtifactIndex].embeds.splice(index, 1);
+
+      // Update state.
+      return {
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
+
   setArtifactIndex: (index: number) => {
     set((state) => {
       const { currentArtifactIndex, artifactMetas } = state;
@@ -492,6 +526,33 @@ const useStateStoreBase = create<StoreModel>()((set, get) => ({
 
       // Update domain of link at index of current artifact.
       newArtifactMetas[currentArtifactIndex].links[index].domain = domain;
+
+      // Update state.
+      return {
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
+
+  setEmbed: (index: number, src: string) => {
+    // Search for embed src in all asset paths.
+    const allAssetPaths = get().allAssetPaths;
+    const assetPath = allAssetPaths.find((path) => path.endsWith(src));
+
+    // Shortcut exit if not found.
+    if (!assetPath) {
+      return;
+    }
+
+    // Update state.
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of artifact metas
+      const newArtifactMetas = [...artifactMetas];
+
+      // Update src of embed at index of current artifact.
+      newArtifactMetas[currentArtifactIndex].embeds[index] = assetPath;
 
       // Update state.
       return {

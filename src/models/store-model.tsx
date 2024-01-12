@@ -77,6 +77,17 @@ interface StoreActions {
    */
   deleteLink: (index: number) => void;
 
+  /**
+   * Creates a new blank embed in the current artifact.
+   */
+  createNewEmbed: () => void;
+
+  /**
+   * Deletes an embed from the current artifact.
+   * @param index The index of the embed to delete.
+   */
+  deleteEmbed: (index: number) => void;
+
   // Artifact meta setters.
 
   /**
@@ -198,6 +209,13 @@ interface StoreActions {
    * @param domain The domain to set.
    */
   setLinkDomain: (index: number, domain: string) => void;
+
+  /**
+   * Sets the embed src metadata of the current artifact.
+   * @param index The index of the embed in the current artifact.
+   * @param src The src to set.
+   */
+  setEmbed: (index: number, src: string) => void;
 }
 
 type StoreModel = StoreState & StoreActions;
