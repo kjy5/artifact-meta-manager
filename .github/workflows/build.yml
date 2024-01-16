@@ -32,7 +32,7 @@ jobs:
     steps:
       - name: 🛎 Checkout
         uses: actions/checkout@v4
-      
+
       # Install PNPM and dependencies
       - name: 📦 Install
         uses: pnpm/action-setup@v2
