@@ -535,13 +535,21 @@ const useStateStoreBase = create<StoreModel>()((set, get) => ({
   },
 
   setEmbed: (index: number, src: string) => {
-    // Search for embed src in all asset paths.
-    const allAssetPaths = get().allAssetPaths;
-    const assetPath = allAssetPaths.find((path) => path.endsWith(src));
+    let embedSrc: string = src;
 
-    // Shortcut exit if not found.
-    if (!assetPath) {
-      return;
+    // Get full path if not an external link.
+    if (!src.startsWith('http')) {
+      // Search for embed src in all asset paths.
+      const allAssetPaths = get().allAssetPaths;
+      const assetPath = allAssetPaths.find((path) => path.endsWith(src));
+
+      // Shortcut exit if not found.
+      if (!assetPath) {
+        return;
+      }
+
+      // Update embed src to be full path.
+      embedSrc = assetPath;
     }
 
     // Update state.
@@ -552,7 +560,7 @@ const useStateStoreBase = create<StoreModel>()((set, get) => ({
       const newArtifactMetas = [...artifactMetas];
 
       // Update src of embed at index of current artifact.
-      newArtifactMetas[currentArtifactIndex].embeds[index] = assetPath;
+      newArtifactMetas[currentArtifactIndex].embeds[index] = embedSrc;
 
       // Update state.
       return {
