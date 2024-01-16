@@ -1,20 +1,20 @@
 import {
-  Button,
-  ButtonGroup,
-  IconButton,
-  Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  TextField,
-  Typography,
+    Button,
+    ButtonGroup,
+    IconButton,
+    Stack,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    TextField,
+    Typography,
 } from '@mui/material';
-import { Add, ArrowDropDown, ArrowDropUp, Check, Delete, FindInPage } from '@mui/icons-material';
-import { ChangeEvent, ReactElement, useCallback } from 'react';
-import { LinkExtract, LinkMeta } from '../models/artifact-meta-models.ts';
+import {Add, ArrowDropDown, ArrowDropUp, Check, Delete, FindInPage} from '@mui/icons-material';
+import {ChangeEvent, ReactElement, useCallback} from 'react';
+import {LinkExtract, LinkMeta} from '../models/artifact-meta-models.ts';
 import useStateStore from '../utils/store-manager.tsx';
 
 /**
@@ -107,8 +107,10 @@ function LinkRow({ index, link }: { index: number; link: LinkMeta }): ReactEleme
                 .then((data) => {
                   setLinkTitle(index, data.title);
                   setLinkDescription(index, data.description);
-                  setLinkImageSrc(index, data.images[0]);
-                  setLinkFaviconSrc(index, data.favicon);
+                    if (data.images.length > 0) {
+                      setLinkImageSrc(index, data.images[0]);
+                    }
+                    setLinkFaviconSrc(index, data.favicon);
                   setLinkDomain(index, data.domain);
                 })
                 .catch((error) => {
