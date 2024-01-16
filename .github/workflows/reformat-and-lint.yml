@@ -17,18 +17,18 @@ jobs:
         with:
           token: ${{ secrets.WORKFLOW_COMMIT }}
 
-      - name: 📦 Setup Node.js and caching
-        uses: actions/setup-node@v4
-        with:
-          node-version: latest
-          cache: 'pnpm'
-
       # Install PNPM and dependencies
       - name: 📦 Install
         uses: pnpm/action-setup@v2
         with:
           version: latest
           run_install: true
+      
+      - name: 📦 Setup Node.js and caching
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+          cache: 'pnpm'
 
       - name: 🧹 Reformat
         run: pnpm prettier

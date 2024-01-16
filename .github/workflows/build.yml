@@ -32,13 +32,6 @@ jobs:
     steps:
       - name: 🛎 Checkout
         uses: actions/checkout@v4
-
-      # Configure NPM to cache dependencies
-      - name: 🟩 Setup Node.js and caching
-        uses: actions/setup-node@v4
-        with:
-          node-version: latest
-          cache: 'pnpm'
       
       # Install PNPM and dependencies
       - name: 📦 Install
@@ -46,6 +39,13 @@ jobs:
         with:
           version: latest
           run_install: true
+
+      # Configure NPM to cache dependencies
+      - name: 🟩 Setup Node.js and caching
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+          cache: 'pnpm'
 
       # Build
       - name: 🔨 Build
