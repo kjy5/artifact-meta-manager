@@ -16,19 +16,19 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.WORKFLOW_COMMIT }}
-      
+
       # Setup PNPM
       - name: 🟨 Setup PNPM
         uses: pnpm/action-setup@v2
         with:
           version: latest
-      
+
       - name: 📦 Setup Node.js and caching
         uses: actions/setup-node@v4
         with:
           node-version: latest
           cache: 'pnpm'
-      
+
       # Install dependencies
       - name: 📦 Install
         run: pnpm install
