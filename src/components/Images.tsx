@@ -1,21 +1,21 @@
 import {
-  Button,
-  ButtonGroup,
-  IconButton,
-  Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  TextField,
-  Typography,
+    Button,
+    ButtonGroup,
+    IconButton,
+    Stack,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    TextField,
+    Typography,
 } from '@mui/material';
-import { Add, AddPhotoAlternate, ArrowDropDown, ArrowDropUp, Check, Delete } from '@mui/icons-material';
+import {Add, AddPhotoAlternate, ArrowDropDown, ArrowDropUp, Check, Delete} from '@mui/icons-material';
 import VisuallyHiddenInput from './VisuallyHiddenInput.tsx';
-import { ChangeEvent, ReactElement, useCallback } from 'react';
-import { ImageMeta } from '../models/artifact-meta-models.ts';
+import {ChangeEvent, ReactElement, useCallback} from 'react';
+import {ImageMeta} from '../models/artifact-meta-models.ts';
 import useStateStore from '../utils/store-manager.tsx';
 
 /**
@@ -45,7 +45,10 @@ function HeaderRow(): ReactElement {
  */
 function ImageRow({ index, image }: { index: number; image: ImageMeta }): ReactElement {
   const allAssetPaths = useStateStore.use.allAssetPaths();
-  const setImageSrc = useStateStore.use.setImageSrc();
+    const artifactMetas = useStateStore.use.artifactMetas();
+    const currentArtifactIndex = useStateStore.use.currentArtifactIndex();
+    const setImageIndex = useStateStore.use.setImageIndex();
+    const setImageSrc = useStateStore.use.setImageSrc();
   const setImageThumbnailSrc = useStateStore.use.setImageThumbnailSrc();
   const setImageTitle = useStateStore.use.setImageTitle();
   const setImageDescription = useStateStore.use.setImageDescription();
@@ -58,10 +61,20 @@ function ImageRow({ index, image }: { index: number; image: ImageMeta }): ReactE
       {/* Placement */}
       <TableCell>
         <ButtonGroup orientation={'vertical'}>
-          <IconButton aria-label={'move up'}>
+          <IconButton
+            aria-label={'move up'}
+            onClick={useCallback(() => {
+              setImageIndex(index, Math.max(index - 1, 0));
+            }, [index, setImageIndex])}
+          >
             <ArrowDropUp />
           </IconButton>
-          <IconButton aria-label={'move down'}>
+          <IconButton
+            aria-label={'move down'}
+            onClick={useCallback(() => {
+              setImageIndex(index, Math.min(index + 1, artifactMetas[currentArtifactIndex].images.length - 1));
+            }, [index, setImageIndex, artifactMetas, currentArtifactIndex])}
+          >
             <ArrowDropDown />
           </IconButton>
         </ButtonGroup>

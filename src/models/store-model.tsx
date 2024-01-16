@@ -127,6 +127,13 @@ interface StoreActions {
   setArtifactText: (text: string) => void;
 
   /**
+   * Update the index of the image in the current artifact.
+   * @param index The current index of the image.
+   * @param newIndex The new index to set.
+   */
+  setImageIndex: (index: number, newIndex: number) => void;
+
+  /**
    * Sets the image src metadata of the current artifact.
    * @param index The index of the image in the current artifact.
    * @param src The src to set.
@@ -169,6 +176,13 @@ interface StoreActions {
   setImageHeight: (index: number, height: number) => void;
 
   /**
+   * Update the index of the link in the current artifact.
+   * @param index The current index of the link.
+   * @param newIndex The new index to set.
+   */
+  setLinkIndex: (index: number, newIndex: number) => void;
+
+  /**
    * Sets the link url metadata of the current artifact.
    * @param index The index of the link in the current artifact.
    * @param url The url to set.
@@ -209,6 +223,13 @@ interface StoreActions {
    * @param domain The domain to set.
    */
   setLinkDomain: (index: number, domain: string) => void;
+
+  /**
+   * Update the index of the embed in the current artifact.
+   * @param index The current index of the embed.
+   * @param newIndex The new index to set.
+   */
+  setEmbedIndex: (index: number, newIndex: number) => void;
 
   /**
    * Sets the embed src metadata of the current artifact.
