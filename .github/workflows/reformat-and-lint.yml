@@ -21,16 +21,20 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: latest
-          cache: 'npm'
+          cache: 'pnpm'
 
-      - name: 🔨 Install
-        run: npm i
+      # Install PNPM and dependencies
+      - name: 📦 Install
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+          run_install: true
 
       - name: 🧹 Reformat
-        run: npx prettier --write .
+        run: pnpm prettier
 
       - name: 🚨 Lint
-        run: npx eslint .
+        run: pnpm lint
 
       - name: ⬆️ Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
