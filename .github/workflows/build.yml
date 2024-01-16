@@ -33,20 +33,26 @@ jobs:
       - name: 🛎 Checkout
         uses: actions/checkout@v4
 
+      # Setup PNPM
+      - name: 🟨 Setup PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
       # Configure NPM to cache dependencies
       - name: 🟩 Setup Node.js and caching
         uses: actions/setup-node@v4
         with:
           node-version: latest
-          cache: 'npm'
+          cache: 'pnpm'
 
-      # Install deps
-      - name: 📦 Install dependencies
-        run: npm i
+      # Install dependencies
+      - name: 📦 Install
+        run: pnpm install
 
       # Build
       - name: 🔨 Build
-        run: npm run build
+        run: pnpm build
         env:
           VITE_JSONLINK_KEY: ${{ secrets.VITE_JSONLINK_KEY }}
 
