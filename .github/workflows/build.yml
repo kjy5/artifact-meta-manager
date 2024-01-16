@@ -33,12 +33,11 @@ jobs:
       - name: 🛎 Checkout
         uses: actions/checkout@v4
       
-      # Install PNPM and dependencies
-      - name: 📦 Install
+      # Setup PNPM
+      - name: 🟨 Setup PNPM
         uses: pnpm/action-setup@v2
         with:
           version: latest
-          run_install: true
 
       # Configure NPM to cache dependencies
       - name: 🟩 Setup Node.js and caching
@@ -46,6 +45,10 @@ jobs:
         with:
           node-version: latest
           cache: 'pnpm'
+      
+      # Install dependencies
+      - name: 📦 Install
+        run: pnpm install
 
       # Build
       - name: 🔨 Build
