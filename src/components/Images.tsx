@@ -1,21 +1,21 @@
 import {
-    Button,
-    ButtonGroup,
-    IconButton,
-    Stack,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    TextField,
-    Typography,
+  Button,
+  ButtonGroup,
+  IconButton,
+  Stack,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextField,
+  Typography,
 } from '@mui/material';
-import {Add, AddPhotoAlternate, ArrowDropDown, ArrowDropUp, Check, Delete} from '@mui/icons-material';
+import { Add, AddPhotoAlternate, ArrowDropDown, ArrowDropUp, Check, Delete } from '@mui/icons-material';
 import VisuallyHiddenInput from './VisuallyHiddenInput.tsx';
-import {ChangeEvent, ReactElement, useCallback} from 'react';
-import {ImageMeta} from '../models/artifact-meta-models.ts';
+import { ChangeEvent, ReactElement, useCallback } from 'react';
+import { ImageMeta } from '../models/artifact-meta-models.ts';
 import useStateStore from '../utils/store-manager.tsx';
 
 /**
@@ -45,10 +45,10 @@ function HeaderRow(): ReactElement {
  */
 function ImageRow({ index, image }: { index: number; image: ImageMeta }): ReactElement {
   const allAssetPaths = useStateStore.use.allAssetPaths();
-    const artifactMetas = useStateStore.use.artifactMetas();
-    const currentArtifactIndex = useStateStore.use.currentArtifactIndex();
-    const setImageIndex = useStateStore.use.setImageIndex();
-    const setImageSrc = useStateStore.use.setImageSrc();
+  const artifactMetas = useStateStore.use.artifactMetas();
+  const currentArtifactIndex = useStateStore.use.currentArtifactIndex();
+  const setImageIndex = useStateStore.use.setImageIndex();
+  const setImageSrc = useStateStore.use.setImageSrc();
   const setImageThumbnailSrc = useStateStore.use.setImageThumbnailSrc();
   const setImageTitle = useStateStore.use.setImageTitle();
   const setImageDescription = useStateStore.use.setImageDescription();

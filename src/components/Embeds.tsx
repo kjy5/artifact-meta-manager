@@ -1,18 +1,18 @@
 import {
-    Button,
-    ButtonGroup,
-    IconButton,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    TextField,
-    Typography,
+  Button,
+  ButtonGroup,
+  IconButton,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextField,
+  Typography,
 } from '@mui/material';
-import {Add, AddPhotoAlternate, ArrowDropDown, ArrowDropUp, Check, Delete} from '@mui/icons-material';
-import {ChangeEvent, ReactElement, useCallback} from 'react';
+import { Add, AddPhotoAlternate, ArrowDropDown, ArrowDropUp, Check, Delete } from '@mui/icons-material';
+import { ChangeEvent, ReactElement, useCallback } from 'react';
 import useStateStore from '../utils/store-manager.tsx';
 import VisuallyHiddenInput from './VisuallyHiddenInput.tsx';
 
@@ -39,10 +39,10 @@ function HeaderRow(): ReactElement {
  * @constructor
  */
 function EmbedRow({ index, embed }: { index: number; embed: string }): ReactElement {
-    const artifactMetas = useStateStore.use.artifactMetas();
-    const currentArtifactIndex = useStateStore.use.currentArtifactIndex();
-    const setEmbedIndex = useStateStore.use.setEmbedIndex();
-    const setEmbed = useStateStore.use.setEmbed();
+  const artifactMetas = useStateStore.use.artifactMetas();
+  const currentArtifactIndex = useStateStore.use.currentArtifactIndex();
+  const setEmbedIndex = useStateStore.use.setEmbedIndex();
+  const setEmbed = useStateStore.use.setEmbed();
   const deleteEmbed = useStateStore.use.deleteEmbed();
   const allAssetPaths = useStateStore.use.allAssetPaths();
 

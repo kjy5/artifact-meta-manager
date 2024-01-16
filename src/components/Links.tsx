@@ -1,20 +1,20 @@
 import {
-    Button,
-    ButtonGroup,
-    IconButton,
-    Stack,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    TextField,
-    Typography,
+  Button,
+  ButtonGroup,
+  IconButton,
+  Stack,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextField,
+  Typography,
 } from '@mui/material';
-import {Add, ArrowDropDown, ArrowDropUp, Check, Delete, FindInPage} from '@mui/icons-material';
-import {ChangeEvent, ReactElement, useCallback} from 'react';
-import {LinkExtract, LinkMeta} from '../models/artifact-meta-models.ts';
+import { Add, ArrowDropDown, ArrowDropUp, Check, Delete, FindInPage } from '@mui/icons-material';
+import { ChangeEvent, ReactElement, useCallback } from 'react';
+import { LinkExtract, LinkMeta } from '../models/artifact-meta-models.ts';
 import useStateStore from '../utils/store-manager.tsx';
 
 /**
@@ -43,10 +43,10 @@ function HeaderRow(): ReactElement {
  * @constructor
  */
 function LinkRow({ index, link }: { index: number; link: LinkMeta }): ReactElement {
-    const artifactMetas = useStateStore.use.artifactMetas();
-    const currentArtifactIndex = useStateStore.use.currentArtifactIndex();
-    const setLinkIndex = useStateStore.use.setLinkIndex();
-    const setLinkUrl = useStateStore.use.setLinkUrl();
+  const artifactMetas = useStateStore.use.artifactMetas();
+  const currentArtifactIndex = useStateStore.use.currentArtifactIndex();
+  const setLinkIndex = useStateStore.use.setLinkIndex();
+  const setLinkUrl = useStateStore.use.setLinkUrl();
   const setLinkTitle = useStateStore.use.setLinkTitle();
   const setLinkDescription = useStateStore.use.setLinkDescription();
   const setLinkImageSrc = useStateStore.use.setLinkImageSrc();
