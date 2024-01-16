@@ -45,6 +45,9 @@ function HeaderRow(): ReactElement {
  */
 function ImageRow({ index, image }: { index: number; image: ImageMeta }): ReactElement {
   const allAssetPaths = useStateStore.use.allAssetPaths();
+  const artifactMetas = useStateStore.use.artifactMetas();
+  const currentArtifactIndex = useStateStore.use.currentArtifactIndex();
+  const setImageIndex = useStateStore.use.setImageIndex();
   const setImageSrc = useStateStore.use.setImageSrc();
   const setImageThumbnailSrc = useStateStore.use.setImageThumbnailSrc();
   const setImageTitle = useStateStore.use.setImageTitle();
@@ -58,10 +61,20 @@ function ImageRow({ index, image }: { index: number; image: ImageMeta }): ReactE
       {/* Placement */}
       <TableCell>
         <ButtonGroup orientation={'vertical'}>
-          <IconButton aria-label={'move up'}>
+          <IconButton
+            aria-label={'move up'}
+            onClick={useCallback(() => {
+              setImageIndex(index, Math.max(index - 1, 0));
+            }, [index, setImageIndex])}
+          >
             <ArrowDropUp />
           </IconButton>
-          <IconButton aria-label={'move down'}>
+          <IconButton
+            aria-label={'move down'}
+            onClick={useCallback(() => {
+              setImageIndex(index, Math.min(index + 1, artifactMetas[currentArtifactIndex].images.length - 1));
+            }, [index, setImageIndex, artifactMetas, currentArtifactIndex])}
+          >
             <ArrowDropDown />
           </IconButton>
         </ButtonGroup>

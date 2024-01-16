@@ -39,6 +39,9 @@ function HeaderRow(): ReactElement {
  * @constructor
  */
 function EmbedRow({ index, embed }: { index: number; embed: string }): ReactElement {
+  const artifactMetas = useStateStore.use.artifactMetas();
+  const currentArtifactIndex = useStateStore.use.currentArtifactIndex();
+  const setEmbedIndex = useStateStore.use.setEmbedIndex();
   const setEmbed = useStateStore.use.setEmbed();
   const deleteEmbed = useStateStore.use.deleteEmbed();
   const allAssetPaths = useStateStore.use.allAssetPaths();
@@ -48,10 +51,20 @@ function EmbedRow({ index, embed }: { index: number; embed: string }): ReactElem
       {/* Placement buttons */}
       <TableCell>
         <ButtonGroup orientation={'vertical'}>
-          <IconButton aria-label={'move up'}>
+          <IconButton
+            aria-label={'move up'}
+            onClick={useCallback(() => {
+              setEmbedIndex(index, Math.max(index - 1, 0));
+            }, [index, setEmbedIndex])}
+          >
             <ArrowDropUp />
           </IconButton>
-          <IconButton aria-label={'move down'}>
+          <IconButton
+            aria-label={'move down'}
+            onClick={useCallback(() => {
+              setEmbedIndex(index, Math.min(index + 1, artifactMetas[currentArtifactIndex].embeds.length - 1));
+            }, [index, setEmbedIndex, artifactMetas, currentArtifactIndex])}
+          >
             <ArrowDropDown />
           </IconButton>
         </ButtonGroup>

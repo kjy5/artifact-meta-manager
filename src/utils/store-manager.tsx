@@ -310,6 +310,29 @@ const useStateStoreBase = create<StoreModel>()((set, get) => ({
     });
   },
 
+  setImageIndex: (index: number, newIndex: number) => {
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of image.
+      const image = { ...artifactMetas[currentArtifactIndex].images[index] };
+
+      // Create copy of artifact metas
+      const newArtifactMetas = [...artifactMetas];
+
+      // Remove image from old index.
+      newArtifactMetas[currentArtifactIndex].images.splice(index, 1);
+
+      // Insert image at new index.
+      newArtifactMetas[currentArtifactIndex].images.splice(newIndex, 0, image);
+
+      // Update state.
+      return {
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
+
   setImageSrc: (index: number, src: string) => {
     // Search for image src in all asset paths.
     const allAssetPaths = get().allAssetPaths;
@@ -432,6 +455,29 @@ const useStateStoreBase = create<StoreModel>()((set, get) => ({
     });
   },
 
+  setLinkIndex: (index: number, newIndex: number) => {
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of link.
+      const link = { ...artifactMetas[currentArtifactIndex].links[index] };
+
+      // Create copy of artifact metas
+      const newArtifactMetas = [...artifactMetas];
+
+      // Remove link from old index.
+      newArtifactMetas[currentArtifactIndex].links.splice(index, 1);
+
+      // Insert link at new index.
+      newArtifactMetas[currentArtifactIndex].links.splice(newIndex, 0, link);
+
+      // Update state.
+      return {
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
+
   setLinkUrl: (index: number, url: string) => {
     set((state) => {
       const { currentArtifactIndex, artifactMetas } = state;
@@ -526,6 +572,29 @@ const useStateStoreBase = create<StoreModel>()((set, get) => ({
 
       // Update domain of link at index of current artifact.
       newArtifactMetas[currentArtifactIndex].links[index].domain = domain;
+
+      // Update state.
+      return {
+        artifactMetas: newArtifactMetas,
+      };
+    });
+  },
+
+  setEmbedIndex: (index: number, newIndex: number) => {
+    set((state) => {
+      const { currentArtifactIndex, artifactMetas } = state;
+
+      // Create copy of embed.
+      const embed = artifactMetas[currentArtifactIndex].embeds[index];
+
+      // Create copy of artifact metas
+      const newArtifactMetas = [...artifactMetas];
+
+      // Remove embed from old index.
+      newArtifactMetas[currentArtifactIndex].embeds.splice(index, 1);
+
+      // Insert embed at new index.
+      newArtifactMetas[currentArtifactIndex].embeds.splice(newIndex, 0, embed);
 
       // Update state.
       return {
