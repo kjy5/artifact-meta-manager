@@ -107,7 +107,9 @@ function LinkRow({ index, link }: { index: number; link: LinkMeta }): ReactEleme
                 .then((data) => {
                   setLinkTitle(index, data.title);
                   setLinkDescription(index, data.description);
-                  setLinkImageSrc(index, data.images[0]);
+                  if (data.images.length > 0) {
+                    setLinkImageSrc(index, data.images[0]);
+                  }
                   setLinkFaviconSrc(index, data.favicon);
                   setLinkDomain(index, data.domain);
                 })
