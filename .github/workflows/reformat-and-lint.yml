@@ -22,7 +22,7 @@ jobs:
 
       # Setup PNPM
       - name: 🟨 Setup PNPM
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v3
         with:
           version: latest
 
