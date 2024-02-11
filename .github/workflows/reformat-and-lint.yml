@@ -2,6 +2,9 @@ name: Reformat and Lint
 
 on:
   pull_request:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -40,6 +43,7 @@ jobs:
         run: pnpm lint
 
       - name: ⬆️ Commit changes
+        if: github.ref != 'refs/heads/main'
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Reformat and Lint
