@@ -37,13 +37,13 @@ jobs:
         run: pnpm install
 
       - name: 🧹 Reformat
-        run: pnpm prettier
-
-      - name: 🚨 Lint
-        run: pnpm lint
+        run: pnpm format
 
       - name: ⬆️ Commit changes
         if: github.ref != 'refs/heads/main'
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: Reformat and Lint
+          commit_message: Auto-reformat code
+      
+      - name: 🚨 Lint
+        run: pnpm lint

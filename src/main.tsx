@@ -1,24 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.tsx";
 
-import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
+import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 
 // Use dark theme.
 const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
+	palette: {
+		mode: "dark",
+	},
 });
 
-const root = document.getElementById('root');
+const root = document.getElementById("root");
 if (root) {
-  ReactDOM.createRoot(root).render(
-    <React.StrictMode>
-      <ThemeProvider theme={darkTheme}>
-        <CssBaseline />
-        <App />
-      </ThemeProvider>
-    </React.StrictMode>,
-  );
+	ReactDOM.createRoot(root).render(
+		<React.StrictMode>
+			<ThemeProvider theme={darkTheme}>
+				<CssBaseline />
+				<App />
+			</ThemeProvider>
+		</React.StrictMode>,
+	);
 }
