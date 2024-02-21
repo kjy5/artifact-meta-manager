@@ -89,7 +89,11 @@ function ImageRow({
 									artifactMetas[currentArtifactIndex].images.length - 1,
 								),
 							);
-						}, [index, setImageIndex, artifactMetas, currentArtifactIndex])}
+						}, [
+							index,
+							setImageIndex,
+							artifactMetas[currentArtifactIndex].images.length,
+						])}
 					>
 						<ArrowDropDown />
 					</IconButton>

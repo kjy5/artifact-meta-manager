@@ -1,17 +1,17 @@
 enum Year {
 	None = -1,
-	Freshman,
-	Sophomore,
-	Junior,
-	Senior,
+	Freshman = 0,
+	Sophomore = 1,
+	Junior = 2,
+	Senior = 3,
 }
 
 enum Quarter {
 	None = -1,
-	Fall,
-	Winter,
-	Spring,
-	Summer,
+	Fall = 0,
+	Winter = 1,
+	Spring = 2,
+	Summer = 3,
 }
 
 interface ImageMeta {

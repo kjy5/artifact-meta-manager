@@ -79,7 +79,11 @@ function EmbedRow({
 									artifactMetas[currentArtifactIndex].embeds.length - 1,
 								),
 							);
-						}, [index, setEmbedIndex, artifactMetas, currentArtifactIndex])}
+						}, [
+							index,
+							setEmbedIndex,
+							artifactMetas[currentArtifactIndex].embeds.length,
+						])}
 					>
 						<ArrowDropDown />
 					</IconButton>

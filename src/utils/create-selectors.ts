@@ -16,6 +16,7 @@ const createSelectors = <S extends UseBoundStore<StoreApi<object>>>(
 	store.use = {};
 	for (const k of Object.keys(store.getState())) {
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access
+		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 		(store.use as any)[k] = () => store((s) => s[k as keyof typeof s]);
 	}
 
