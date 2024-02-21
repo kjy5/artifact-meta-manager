@@ -1,58 +1,58 @@
 enum Year {
-  None = -1,
-  Freshman,
-  Sophomore,
-  Junior,
-  Senior,
+	None = -1,
+	Freshman,
+	Sophomore,
+	Junior,
+	Senior,
 }
 
 enum Quarter {
-  None = -1,
-  Fall,
-  Winter,
-  Spring,
-  Summer,
+	None = -1,
+	Fall,
+	Winter,
+	Spring,
+	Summer,
 }
 
 interface ImageMeta {
-  title: string;
-  description: string;
-  width: number;
-  height: number;
-  src: string;
-  thumbnailSrc: string;
+	title: string;
+	description: string;
+	width: number;
+	height: number;
+	src: string;
+	thumbnailSrc: string;
 }
 
 interface LinkMeta {
-  url: string;
-  title: string;
-  description: string;
-  imageSrc: string;
-  faviconSrc: string;
-  domain: string;
+	url: string;
+	title: string;
+	description: string;
+	imageSrc: string;
+	faviconSrc: string;
+	domain: string;
 }
 
 interface LinkExtract {
-  title: string;
-  description: string;
-  images: string[];
-  sitename: string;
-  favicon: string;
-  duration: number;
-  domain: string;
-  url: string;
-  source: string;
+	title: string;
+	description: string;
+	images: string[];
+	sitename: string;
+	favicon: string;
+	duration: number;
+	domain: string;
+	url: string;
+	source: string;
 }
 
 interface ArtifactMeta {
-  title: string;
-  subtitle: string;
-  year: Year;
-  quarter: Quarter;
-  text: string;
-  images: ImageMeta[];
-  links: LinkMeta[];
-  embeds: string[];
+	title: string;
+	subtitle: string;
+	year: Year;
+	quarter: Quarter;
+	text: string;
+	images: ImageMeta[];
+	links: LinkMeta[];
+	embeds: string[];
 }
 
 /**
