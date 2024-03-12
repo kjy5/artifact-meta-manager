@@ -87,11 +87,7 @@ function LinkRow({
                   artifactMetas[currentArtifactIndex].links.length - 1,
                 ),
               );
-            }, [
-              index,
-              setLinkIndex,
-              artifactMetas[currentArtifactIndex].links.length,
-            ])}
+            }, [index, setLinkIndex, currentArtifactIndex, artifactMetas])}
           >
             <ArrowDropDown />
           </IconButton>
