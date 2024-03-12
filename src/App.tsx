@@ -1,5 +1,5 @@
 import { Box, Container, Stack, Typography } from "@mui/material";
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import ArtifactPicker from "./components/ArtifactPicker.tsx";
 import BasicInfo from "./components/BasicInfo.tsx";
 import Embeds from "./components/Embeds.tsx";
@@ -13,31 +13,31 @@ import useStateStore from "./utils/store-manager.tsx";
  * @constructor
  */
 function App(): ReactElement {
-	// Select from store.
-	const currentArtifactIndex = useStateStore.use.currentArtifactIndex();
+  // Select from store.
+  const currentArtifactIndex = useStateStore.use.currentArtifactIndex();
 
-	return (
-		<Box sx={{ m: 2 }}>
-			<Container>
-				<Stack spacing={2}>
-					<Typography variant={"h1"}>Artifact Meta Manager</Typography>
+  return (
+    <Box sx={{ m: 2 }}>
+      <Container>
+        <Stack spacing={2}>
+          <Typography variant={"h1"}>Artifact Meta Manager</Typography>
 
-					<FileLoader />
-					<ArtifactPicker />
+          <FileLoader />
+          <ArtifactPicker />
 
-					{/* Show rest of UI when artifact is selected */}
-					{currentArtifactIndex !== -1 && (
-						<>
-							<BasicInfo />
-							<Images />
-							<Links />
-							<Embeds />
-						</>
-					)}
-				</Stack>
-			</Container>
-		</Box>
-	);
+          {/* Show rest of UI when artifact is selected */}
+          {currentArtifactIndex !== -1 && (
+            <>
+              <BasicInfo />
+              <Images />
+              <Links />
+              <Embeds />
+            </>
+          )}
+        </Stack>
+      </Container>
+    </Box>
+  );
 }
 
 export default App;
