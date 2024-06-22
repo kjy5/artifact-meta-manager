@@ -1,21 +1,27 @@
-# Artifact Meta Manager
+# ArtifactMetaManager
 
-[![Build Website](https://github.com/kjy5/artifact-meta-manager/actions/workflows/build.yml/badge.svg)](https://github.com/kjy5/artifact-meta-manager/actions/workflows/build.yml)
-[![Deploy to GitHub Pages](https://github.com/kjy5/artifact-meta-manager/actions/workflows/deploy.yml/badge.svg)](https://github.com/kjy5/artifact-meta-manager/actions/workflows/deploy.yml)
-[![Dependency Review](https://github.com/kjy5/artifact-meta-manager/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/kjy5/artifact-meta-manager/actions/workflows/dependency-review.yml)
-[![Reformat and Lint](https://github.com/kjy5/artifact-meta-manager/actions/workflows/reformat-and-lint.yml/badge.svg)](https://github.com/kjy5/artifact-meta-manager/actions/workflows/reformat-and-lint.yml)
-[![CodeQL](https://github.com/kjy5/artifact-meta-manager/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/kjy5/artifact-meta-manager/actions/workflows/github-code-scanning/codeql)
-[![DeepSource](https://app.deepsource.com/gh/kjy5/artifact-meta-manager.svg/?label=active+issues&show_trend=true&token=Cm9dfeqGlmlSHXIKQq8MeF-l)](https://app.deepsource.com/gh/kjy5/artifact-meta-manager/)
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.5.
 
-Tool to manage the metadata of artifacts for
-my [Honors Portfolio](https://kjy5.github.io/honors-portfolio/).
+## Development server
 
-Launch the tool [here](https://kjy5.github.io/artifact-meta-manager/).
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Development
+## Code scaffolding
 
-1. Get the latest version of [Node.js](https://nodejs.org/en/) (LTS or Current).
-2. Clone the repository.
-3. `cd artifact-meta-manager`
-4. `npm install`
-5. `npm run dev`
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
